@@ -3,17 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    
-    <title>WatchMitra Universal Production v18.0</title>
+    <title>WatchMitra Universal Production v17.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <style>
-        /* 🎨 MASTER CYBER NEON THEME (FULLY RESTORED) */
+        /* 🎨 MASTER CYBER NEON THEME */
         :root { 
             --primary: #00ff66; 
             --accent: #bd00ff;  
@@ -31,10 +25,6 @@
         
         .secret-logo { font-size: 18px; font-weight: 800; padding: 5px 0; cursor: pointer; position: relative; }
         
-        /* 🌐 न्यू लैंग्वेज टॉगल बटन स्टाइल */
-        .lang-toggle-btn { background: rgba(189, 0, 255, 0.1); border: 1px solid var(--accent); color: #fff; padding: 6px 10px; border-radius: 20px; font-size: 12px; font-weight: 800; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 4px; box-shadow: var(--purple-glow); }
-        .lang-toggle-btn:hover { background: var(--accent); color: #fff; }
-
         .refresh-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; }
         .refresh-btn:hover { background: rgba(0, 255, 102, 0.1); border-color: var(--primary); color: var(--primary); transform: rotate(180deg); }
 
@@ -63,6 +53,11 @@
         .streak-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 12px; }
         .streak-day { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 8px 4px; text-align: center; font-size: 11px; color: #9ca3af; }
         .streak-day.completed { border-color: var(--primary); background: rgba(0, 255, 102, 0.08); color: var(--primary); font-weight: 700; }
+
+        .leader-row { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 8px; margin-bottom: 6px; border: 1px solid rgba(255,255,255,0.05); }
+        .leader-rank { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; }
+        .rank-1 { background: #f59e0b; color: #000; box-shadow: 0 0 10px #f59e0b; }
+        .rank-2 { background: #9ca3af; color: #000; }
 
         #push-toast { position: fixed; top: -120px; left: 5%; width: 90%; background: linear-gradient(135deg, #1e1b4b, #030712); border: 2px solid var(--accent); box-shadow: var(--purple-glow); padding: 15px; border-radius: 14px; z-index: 99999; display: flex; align-items: center; gap: 12px; transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
@@ -103,24 +98,10 @@
         .nav-item.active { color: var(--primary); text-shadow: var(--neon-glow); }
         .nav-item i { font-size: 20px; pointer-events: none; }
         
-        /* 🚨 कस्टम थीम-बेस्ड पॉपअप सिस्टम स्टाइल (No More Chrome URL Alert) */
-        .wm-modal-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0, 0, 0, 0.85); z-index: 100000; justify-content: center; align-items: center; backdrop-filter: blur(8px); padding: 20px; }
-        .wm-modal-box { background: #0b1329; border: 2px solid var(--primary); box-shadow: var(--neon-glow); border-radius: 16px; width: 100%; max-width: 340px; padding: 20px; text-align: center; animation: modalSlideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        @keyframes modalSlideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .wm-modal-title { font-size: 16px; font-weight: 800; color: var(--primary); margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .wm-modal-body { font-size: 13px; color: #e2e8f0; line-height: 1.5; margin-bottom: 18px; }
-        .wm-modal-btn { background: linear-gradient(135deg, #00ff66, #00cb52); color: #000; font-weight: 800; border: none; padding: 10px 24px; border-radius: 8px; cursor: pointer; font-size: 13px; box-shadow: var(--neon-glow); }
+        #nav-admin-tab { display: none; color: #ef4444; }
     </style>
 </head>
 <body>
-
-    <div id="wm-custom-modal" class="wm-modal-overlay">
-        <div class="wm-modal-box">
-            <div id="wm-modal-title-box" class="wm-modal-title">🔔 WatchMitra संदेश</div>
-            <p id="wm-modal-desc-box" class="wm-modal-body">विवरण संदेश यहाँ दिखाई देगा।</p>
-            <button class="wm-modal-btn" onclick="closeWatchMitraModal()" data-i18n="modal_ok_btn">ठीक है</button>
-        </div>
-    </div>
 
     <div id="push-toast">
         <i class="fa-solid fa-bell"></i>
@@ -137,10 +118,6 @@
         </div>
         
         <div class="header-actions">
-            <button class="lang-toggle-btn" onclick="toggleLanguageSystem()">
-                <i class="fa-solid fa-language"></i> <span id="lang-btn-text">English</span>
-            </button>
-
             <button class="share-header-btn" onclick="openInviteShareSystem()" title="किसी भी प्लेटफार्म पर शेयर करें">
                 <i class="fa-solid fa-share-nodes"></i>
             </button>
@@ -161,15 +138,15 @@
         </div>
     </header>
 
-    <div class="page" id="notification-inbox-section" style="padding: 10px 20px 0 20px; display: none;">
+    <div class="page" id="notification-inbox-section" style="padding: 10px 20px 0 20px;">
         <div class="notification-inbox" id="inbox-wrapper" style="display: block;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <h5 style="font-size:13px; font-weight:800; color:var(--primary);" data-i18n="inbox_title"><i class="fa-solid fa-envelope-open-text"></i> आपके महत्वपूर्ण अलर्ट्स</h5>
-                <small onclick="clearAllNotifications()" style="color:#ef4444; font-size:11px; cursor:pointer; font-weight:700;" data-i18n="inbox_clear_all">सब हटाएँ</small>
+                <h5 style="font-size:13px; font-weight:800; color:var(--primary);"><i class="fa-solid fa-envelope-open-text"></i> आपके महत्वपूर्ण अलर्ट्स</h5>
+                <small onclick="clearAllNotifications()" style="color:#ef4444; font-size:11px; cursor:pointer; font-weight:700;">सब हटाएँ</small>
             </div>
             <div id="notifications-list-container">
-                <div class="noti-item noti-success" data-i18n="noti_msg_1"><b>✅ WatchMitra टीम:</b> आपका विड्रॉल ट्रांसफर कर दिया गया है। सफलतापूर्वक प्राप्त हुआ।</div>
-                <div class="noti-item noti-failed" data-i18n="noti_msg_2"><b>🚨 WatchMitra टीम:</b> टास्क रिजेक्टेड (धोखाधड़ी पाई गई)! कृपया सही स्क्रीनशॉट अपलोड करें।</div>
+                <div class="noti-item noti-success"><b>✅ WatchMitra टीम:</b> आपका विड्रॉल ट्रांसफर कर दिया गया है। सफलतापूर्वक प्राप्त हुआ।</div>
+                <div class="noti-item noti-failed"><b>🚨 WatchMitra टीम:</b> टास्क रिजेक्टेड (धोखाधड़ी पाई गई)! कृपया सही स्क्रीनशॉट अपलोड करें।</div>
             </div>
         </div>
     </div>
@@ -179,22 +156,22 @@
         <div class="card" style="background: linear-gradient(135deg, rgba(189,0,255,0.15), rgba(79,70,229,0.05)); border-color: rgba(189,0,255,0.3);">
             <div style="display:flex; justify-content:space-between; align-items:center;">
                 <div>
-                    <h4 style="font-size:14px; font-weight:800; color:#e0f2fe;" data-i18n="daily_reward_title">🎁 डेली रिवॉर्ड स्ट्रीक</h4>
-                    <p style="font-size:11px; color:#9ca3af;" data-i18n="daily_reward_desc">रोजाना लॉगिन बोनस क्लेम करें</p>
+                    <h4 style="font-size:14px; font-weight:800; color:#e0f2fe;">🎁 डेली रिवॉर्ड स्ट्रीक</h4>
+                    <p style="font-size:11px; color:#9ca3af;">रोजाना लॉगिन बोनस क्लेम करें</p>
                 </div>
-                <button id="daily-bonus-btn" class="task-btn" onclick="triggerWinWinStreakBonus()" style="background:var(--accent); color:#fff; box-shadow: var(--purple-glow);" data-i18n="daily_reward_btn">क्लेम करें</button>
+                <button id="daily-bonus-btn" class="task-btn" onclick="triggerWinWinStreakBonus()" style="background:var(--accent); color:#fff; box-shadow: var(--purple-glow);">क्लेम करें</button>
             </div>
             <div class="streak-grid">
-                <div class="streak-day" id="sday-1"><span data-i18n="day_1">दिन 1</span><br><b>+20</b></div>
-                <div class="streak-day" id="sday-2"><span data-i18n="day_2">दिन 2</span><br><b>+40</b></div>
-                <div class="streak-day" id="sday-3"><span data-i18n="day_3">दिन 3</span><br><b>+60</b></div>
-                <div class="streak-day" id="sday-4"><span data-i18n="day_4">दिन 4</span><br><b>+80</b></div>
-                <div class="streak-day" id="sday-5"><span data-i18n="day_5">दिन 5</span><br><b>+100</b></div>
+                <div class="streak-day" id="sday-1">दिन 1<br><b>+20</b></div>
+                <div class="streak-day" id="sday-2">दिन 2<br><b>+40</b></div>
+                <div class="streak-day" id="sday-3">दिन 3<br><b>+60</b></div>
+                <div class="streak-day" id="sday-4">दिन 4<br><b>+80</b></div>
+                <div class="streak-day" id="sday-5">दिन 5<br><b>+100</b></div>
             </div>
         </div>
 
         <div class="card">
-            <h4 style="font-size:14px; font-weight:800; text-align:center;" data-i18n="lucky_spin_title">🎡 लकी स्पिन व्हील</h4>
+            <h4 style="font-size:14px; font-weight:800; text-align:center;">🎡 लकी स्पिन व्हील</h4>
             <div class="spin-section">
                 <div class="wheel-outer-wrapper">
                     <div class="wheel-pointer"></div>
@@ -206,57 +183,57 @@
         </div>
 
         <div class="video-selector-grid">
-            <button id="vchan-0" class="v-sel-btn playing" onclick="switchVideoIframe('dQw4w9WgXcQ', 0)"><i class="fa-solid fa-music"></i> <span data-i18n="track_01">ट्रैक 01</span></button>
-            <button id="vchan-1" class="v-sel-btn" onclick="switchVideoIframe('9wt6Y9a06pE', 1)"><i class="fa-solid fa-headset"></i> <span data-i18n="track_02">लो-फाई 02</span></button>
-            <button id="vchan-2" class="v-sel-btn" onclick="switchVideoIframe('5qap5aO4i9A', 2)"><i class="fa-solid fa-bolt"></i> <span data-i18n="track_03">बॉलीवुड मेष</span></button>
-            <button id="vchan-3" class="v-sel-btn" onclick="switchVideoIframe('kJQP7kiw5Fk', 3)"><i class="fa-solid fa-gamepad"></i> <span data-i18n="track_04">गेमिंग म्यूज़िक</span></button>
+            <button id="vchan-0" class="v-sel-btn playing" onclick="switchVideoIframe('dQw4w9WgXcQ', 0)"><i class="fa-solid fa-music"></i> ट्रैक 01</button>
+            <button id="vchan-1" class="v-sel-btn" onclick="switchVideoIframe('9wt6Y9a06pE', 1)"><i class="fa-solid fa-headset"></i> लो-फाई 02</button>
+            <button id="vchan-2" class="v-sel-btn" onclick="switchVideoIframe('5qap5aO4i9A', 2)"><i class="fa-solid fa-bolt"></i> बॉलीवुड मेष</button>
+            <button id="vchan-3" class="v-sel-btn" onclick="switchVideoIframe('kJQP7kiw5Fk', 3)"><i class="fa-solid fa-gamepad"></i> गेमिंग म्यूज़िक</button>
         </div>
 
         <div class="video-box"><div id="player-frame"></div></div>
         <div class="progress-container"><div id="video-progress-fill" class="progress-bar-fill"></div></div>
 
-        <button id="claim-video-btn" class="reward-btn" onclick="claimVideoCoins()" data-i18n="video_claim_btn">📺 वीडियो प्ले करके 3 मिनट देखें</button>
-        <p id="video-status-lbl" style="text-align:center; font-size:12px; color:#6b7280; margin-top:10px;" data-i18n="player_ready">प्लेयर रेडी है...</p>
+        <button id="claim-video-btn" class="reward-btn" onclick="claimVideoCoins()">📺 वीडियो प्ले करके 3 मिनट देखें</button>
+        <p id="video-status-lbl" style="text-align:center; font-size:12px; color:#6b7280; margin-top:10px;">प्लेयर रेडी है...</p>
 
-        <h4 style="margin: 25px 0 10px 0; font-size:13px; color:var(--accent); font-weight:700;"><i class="fa-solid fa-bolt"></i> <span data-i18n="cpa_section_title">विशेष भाई-वैल्यू टास्क (3-in-1 Matrix)</span></h4>
+        <h4 style="margin: 25px 0 10px 0; font-size:13px; color:var(--accent); font-weight:700;"><i class="fa-solid fa-bolt"></i> विशेष भाई-वैल्यू टास्क (3-in-1 Matrix)</h4>
         <div class="card" id="all-tasks-box">
             
             <div class="task-row" id="container-task1">
                 <div class="task-meta">
-                    <div><h5 style="font-weight:700;" data-i18n="task1_title">Finance App डाउनलोड करें</h5><p style="font-size:11px; color:#6b7280;" data-i18n="task1_desc">इंस्टॉल और रजिस्टर करें</p></div>
-                    <a href="https://google.com" target="_blank" class="task-btn" onclick="activateUploadZone('task1')" data-i18n="task_link_btn">लिंक खोलें (+3500)</a>
+                    <div><h5 style="font-weight:700;">Finance App डाउनलोड करें</h5><p style="font-size:11px; color:#6b7280;">इंस्टॉल और रजिस्टर करें</p></div>
+                    <a href="https://google.com" target="_blank" class="task-btn" onclick="activateUploadZone('task1')">लिंक खोलें (+3500)</a>
                 </div>
                 <div class="upload-zone" id="zone-task1" style="display:none;">
-                    <label class="file-lbl" for="file-task1">📸 <span data-i18n="screenshot_lbl">स्क्रीनशॉट</span></label>
+                    <label class="file-lbl" for="file-task1">📸 स्क्रीनशॉट</label>
                     <input type="file" id="file-task1" accept="image/*" onchange="showFileFeedback('task1')">
-                    <span id="feed-task1" style="font-size:11px; color:#9ca3af;" data-i18n="no_file_lbl">कोई फ़ाइल नहीं</span>
-                    <button class="submit-proof-btn" onclick="submitCpaTaskProof('task1', 3500, 'Finance App')" data-i18n="submit_btn">सबमिट</button>
+                    <span id="feed-task1" style="font-size:11px; color:#9ca3af;">कोई फ़ाइल नहीं</span>
+                    <button class="submit-proof-btn" onclick="submitCpaTaskProof('task1', 3500, 'Finance App')">सबमिट</button>
                 </div>
             </div>
 
             <div class="task-row" id="container-task2">
                 <div class="task-meta">
-                    <div><h5 style="font-weight:700;" data-i18n="task2_title">Crypto Wallet रजिस्टर करें</h5><p style="font-size:11px; color:#6b7280;" data-i18n="task2_desc">अकाउंट बनाकर KYC वेरीफाई करें</p></div>
-                    <a href="https://google.com" target="_blank" class="task-btn" onclick="activateUploadZone('task2')" data-i18n="task_link_btn">लिंक खोलें (+5000)</a>
+                    <div><h5 style="font-weight:700;">Crypto Wallet रजिस्टर करें</h5><p style="font-size:11px; color:#6b7280;">अकाउंट बनाकर KYC वेरीफाई करें</p></div>
+                    <a href="https://google.com" target="_blank" class="task-btn" onclick="activateUploadZone('task2')">लिंक खोलें (+5000)</a>
                 </div>
                 <div class="upload-zone" id="zone-task2" style="display:none;">
-                    <label class="file-lbl" for="file-task2">📸 <span data-i18n="screenshot_lbl">स्क्रीनशॉट</span></label>
+                    <label class="file-lbl" for="file-task2">📸 स्क्रीनशॉट</label>
                     <input type="file" id="file-task2" accept="image/*" onchange="showFileFeedback('task2')">
-                    <span id="feed-task2" style="font-size:11px; color:#9ca3af;" data-i18n="no_file_lbl">कोई फ़ाइल नहीं</span>
-                    <button class="submit-proof-btn" onclick="submitCpaTaskProof('task2', 5000, 'Crypto Wallet')" data-i18n="submit_btn">सबमिट</button>
+                    <span id="feed-task2" style="font-size:11px; color:#9ca3af;">कोई फ़ाइल नहीं</span>
+                    <button class="submit-proof-btn" onclick="submitCpaTaskProof('task2', 5000, 'Crypto Wallet')">सबमिट</button>
                 </div>
             </div>
 
             <div class="task-row" id="container-task3">
                 <div class="task-meta">
-                    <div><h5 style="font-weight:700;" data-i18n="task3_title">Instagram पर फॉलो करें</h5><p style="font-size:11px; color:#6b7280;" data-i18n="task3_desc">ऑफिशियल पेज को फॉलो करें</p></div>
-                    <a href="https://instagram.com" target="_blank" class="task-btn" onclick="activateUploadZone('task3')" data-i18n="task_link_btn">लिंक खोलें (+1500)</a>
+                    <div><h5 style="font-weight:700;">Instagram पर फॉलो करें</h5><p style="font-size:11px; color:#6b7280;">ऑफिशियल पेज को फॉलो करें</p></div>
+                    <a href="https://instagram.com" target="_blank" class="task-btn" onclick="activateUploadZone('task3')">लिंक खोलें (+1500)</a>
                 </div>
                 <div class="upload-zone" id="zone-task3" style="display:none;">
-                    <label class="file-lbl" for="file-task3">📸 <span data-i18n="screenshot_lbl">स्क्रीनशॉट</span></label>
+                    <label class="file-lbl" for="file-task3">📸 स्क्रीनशॉट</label>
                     <input type="file" id="file-task3" accept="image/*" onchange="showFileFeedback('task3')">
-                    <span id="feed-task3" style="font-size:11px; color:#9ca3af;" data-i18n="no_file_lbl">कोई फ़ाइल नहीं</span>
-                    <button class="submit-proof-btn" onclick="submitCpaTaskProof('task3', 1500, 'Instagram Follow')" data-i18n="submit_btn">सबमिट</button>
+                    <span id="feed-task3" style="font-size:11px; color:#9ca3af;">कोई फ़ाइल नहीं</span>
+                    <button class="submit-proof-btn" onclick="submitCpaTaskProof('task3', 1500, 'Instagram Follow')">सबमिट</button>
                 </div>
             </div>
 
@@ -265,430 +242,269 @@
 
     <div id="withdraw-page" class="page">
         <div class="card">
-            <h4 style="font-weight:800; margin-bottom:15px;" data-i18n="withdraw_center_title">🏦 निकासी केंद्र</h4>
+            <h4 style="font-weight:800;">🏦 निकासी केंद्र</h4>
             <input type="text" id="input-upi" placeholder="अपनी UPI ID दर्ज करें">
             <input type="number" id="input-coins" placeholder="Coins में राशि डालें">
-            <button class="action-btn" onclick="handleWithdrawSubmit()" data-i18n="withdraw_submit_btn">अनुरोध सबमिट करें</button>
+            <button class="action-btn" onclick="handleWithdrawSubmit()">अनुरोध सबमिट करें</button>
         </div>
     </div>
 
     <div id="share-page" class="page">
         <div class="card" style="text-align:center; border-color:var(--accent);">
             <i class="fa-solid fa-gift" style="font-size:40px; color:var(--accent); margin-bottom:15px;"></i>
-            <h3 style="font-weight:800; margin-bottom:8px;" data-i18n="invite_card_title">दोस्तों को इनवाइट करें</h3>
-            <p style="font-size:12px; color:#9ca3af; margin-bottom:15px;" data-i18n="invite_card_desc">किसी भी प्लेटफॉर्म (WhatsApp, Telegram, SMS) पर शेयर करें और कमाएं!</p>
+            <h3 style="font-weight:800; margin-bottom:5px;">दोस्तों को इनवाइट करें</h3>
+            <p style="font-size:13px; color:#9ca3af; margin-bottom:20px;">किसी भी प्लेटफार्म (Bluetooth, WhatsApp, Telegram, SMS) पर शेयर करें और कमाएं!</p>
             
-            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 15px; text-align: left;">
-                <label style="font-size: 11px; color: var(--primary); font-weight: 700;" data-i18n="your_link_lbl">आपका पर्सनल इनवाइट लिंक:</label>
-                <div style="display: flex; gap: 8px; margin-top: 5px;">
-                    <input type="text" id="invite-link-field" value="https://watchmitra.page.link/invite77" readonly style="margin:0; padding:8px 12px; font-size:12px; flex:1;">
-                    <button onclick="copyToClipboardFallback()" style="background:var(--primary); color:#000; border:none; border-radius:8px; padding:0 15px; font-weight:800; font-size:12px; cursor:pointer;" data-i18n="copy_btn">कॉपी</button>
-                </div>
+            <div style="background:rgba(0,0,0,0.3); padding:15px; border-radius:12px; border:1px solid rgba(255,255,255,0.05); margin-bottom:20px;">
+                <p style="font-size:11px; color:#6b7280; text-transform:uppercase;">आपका पर्सनल इनवाइट लिंक</p>
+                <h4 style="color:var(--primary); font-size:15px; font-weight:700; margin-top:5px; word-break:break-all;">https://watchmitra.com/invite?code=WM9911</h4>
             </div>
-            
-            <button class="action-btn" onclick="openInviteShareSystem()" data-i18n="big_share_btn"><i class="fa-solid fa-share-nodes"></i> डायरेक्ट इनवाइट शेयर करें</button>
+
+            <button class="action-btn" onclick="executeLiveShareAction()" style="background:linear-gradient(135deg, #bd00ff, #7e22ce); color:#fff; box-shadow:var(--purple-glow);">
+                <i class="fa-solid fa-share-nodes"></i> लिंक शेयर करें (All Platforms)
+            </button>
+        </div>
+    </div>
+
+    <div id="profile-page" class="page">
+        <div class="card" style="text-align:center;">
+            <h4 style="font-weight:800;">👤 डैशबोर्ड</h4>
+            <h5 id="profile-coins-lbl" style="color:var(--primary); font-size:20px; font-weight:800; margin-top:10px;">0 Coins (₹0.00)</h5>
+        </div>
+
+        <div class="card" style="border-color: rgba(0, 255, 102, 0.2);">
+            <h4 style="font-weight:800; font-size:13px; color:var(--primary); margin-bottom:10px;"><i class="fa-solid fa-trophy"></i> लाइव लीडरबोर्ड</h4>
+            <div id="leaderboard-box">
+                <div class="leader-row"><div style="display:flex; align-items:center; gap:10px;"><div class="leader-rank rank-1">1</div><b>Raja Chand</b></div><span style="color:var(--primary); font-weight:700;">₹4,250.00</span></div>
+                <div class="leader-row"><div style="display:flex; align-items:center; gap:10px;"><div class="leader-rank rank-2">2</div><b>Maya Singh</b></div><span style="color:var(--primary); font-weight:700;">₹3,100.00</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-page" class="page">
+        <div class="card" style="border-color:#ef4444;">
+            <h4 style="color:#ef4444; font-weight:800;"><i class="fa-solid fa-user-shield"></i> WatchMitra कंट्रोल रूम</h4>
+            <button onclick="injectAdminCustomAlert('success', '✅ पेमेंट सक्सेस: आपके कॉइन्स कैश आउट कर दिए गए हैं।')" style="background:#00ff66; color:#000; padding:8px; font-weight:700; border-radius:6px; margin:4px; border:none; cursor:pointer;">सक्सेस अलर्ट भेजें</button>
         </div>
     </div>
 
     <nav class="nav-bar">
-        <button class="nav-item active" id="nav-home" onclick="navigatePage('home-page', 'nav-home')">
-            <i class="fa-solid fa-house"></i>
-            <span data-i18n="nav_home_lbl">होम</span>
-        </button>
-        <button class="nav-item" id="nav-withdraw" onclick="navigatePage('withdraw-page', 'nav-withdraw')">
-            <i class="fa-solid fa-wallet"></i>
-            <span data-i18n="nav_withdraw_lbl">निकासी</span>
-        </button>
-        <button class="nav-item" id="nav-share" onclick="navigatePage('share-page', 'nav-share')">
-            <i class="fa-solid fa-gift"></i>
-            <span data-i18n="nav_share_lbl">शेयर करें</span>
-        </button>
+        <button id="nav-btn-home" class="nav-item active" onclick="switchGlobalTab('home-page', 'nav-btn-home')"><i class="fa-solid fa-house"></i><span>होम</span></button>
+        <button id="nav-btn-withdraw" class="nav-item" onclick="switchGlobalTab('withdraw-page', 'nav-btn-withdraw')"><i class="fa-solid fa-wallet"></i><span>निकासी</span></button>
+        <button id="nav-btn-share" class="nav-item" onclick="switchGlobalTab('share-page', 'nav-btn-share')"><i class="fa-solid fa-gift"></i><span>शेयर करें</span></button>
+        <button id="nav-btn-profile" class="nav-item" onclick="switchGlobalTab('profile-page', 'nav-btn-profile')"><i class="fa-solid fa-user"></i><span>प्रोफ़ाइल</span></button>
+        <button id="nav-admin-tab" class="nav-item" onclick="switchGlobalTab('admin-page', 'nav-admin-tab')"><i class="fa-solid fa-star"></i><span>एडमिन</span></button>
     </nav>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // वैश्विक स्टेट्स
-        let userBalanceCoins = 250;
-        let selectedTrackIndex = 0;
-        let globalLanguage = 'hi';
-        let videoProgressInterval = null;
-        let videoProgressPercent = 0;
+        let ytPlayer;
+        let localCoins = parseInt(localStorage.getItem('appCoins_v47')) || 0;
+        let videoWatchDone = false;
+        let watchTimerInterval;
+        let secondsWatched = 0;
+        let lastValidTime = 0;
+        const TARGET_SECONDS = 180; 
 
-        // 🔤 पूर्ण द्विभाषी अनुवाद डिक्शनरी (ए टू ज़ेड एलिमेंट्स कवर्ड)
-        const appTranslationDictionary = {
-            'hi': {
-                'modal_ok_btn': 'ठीक है',
-                'inbox_title': 'आपके महत्वपूर्ण अलर्ट्स',
-                'inbox_clear_all': 'सब हटाएँ',
-                'noti_msg_1': '<b>✅ WatchMitra टीम:</b> आपका विड्रॉल ट्रांसफर कर दिया गया है। सफलतापूर्वक प्राप्त हुआ।',
-                'noti_msg_2': '<b>🚨 WatchMitra टीम:</b> टास्क रिजेक्टेड (धोखाधड़ी पाई गई)! कृपया सही स्क्रीनशॉट अपलोड करें।',
-                'daily_reward_title': '🎁 डेली रिवॉर्ड स्ट्रीक',
-                'daily_reward_desc': 'रोजाना लॉगिन बोनस क्लेम करें',
-                'daily_reward_btn': 'क्लेम करें',
-                'day_1': 'दिन 1', 'day_2': 'दिन 2', 'day_3': 'दिन 3', 'day_4': 'दिन 4', 'day_5': 'दिन 5',
-                'lucky_spin_title': '🎡 लकी स्पिन व्हील',
-                'track_01': 'ट्रैक 01', 'track_02': 'लो-फाई 02', 'track_03': 'बॉलीवुड मेष', 'track_04': 'गेमिंग म्यूज़िक',
-                'video_claim_btn': '📺 वीडियो प्ले करके 3 मिनट देखें',
-                'player_ready': 'प्लेयर रेडी है...',
-                'cpa_section_title': 'विशेष भाई-वैल्यू टास्क (3-in-1 Matrix)',
-                'task1_title': 'Finance App डाउनलोड करें', 'task1_desc': 'इंस्टॉल और रजिस्टर करें',
-                'task2_title': 'Crypto Wallet रजिस्टर करें', 'task2_desc': 'अकाउंट बनाकर KYC वेरीफाई करें',
-                'task3_title': 'Instagram पर फॉलो करें', 'task3_desc': 'ऑफिशियल पेज को फॉलो करें',
-                'task_link_btn': 'लिंक खोलें',
-                'screenshot_lbl': 'स्क्रीनशॉट',
-                'no_file_lbl': 'कोई फ़ाइल नहीं',
-                'submit_btn': 'सबमिट',
-                'withdraw_center_title': '🏦 निकासी केंद्र',
-                'withdraw_submit_btn': 'अनुरोध सबमिट करें',
-                'invite_card_title': 'दोस्तों को इनवाइट करें',
-                'invite_card_desc': 'किसी भी प्लेटफॉर्म (WhatsApp, Telegram, SMS) पर शेयर करें और कमाएं!',
-                'your_link_lbl': 'आपका पर्सनल इनवाइट लिंक:',
-                'copy_btn': 'कॉपी',
-                'big_share_btn': 'डायरेक्ट इनवाइट शेयर करें',
-                'nav_home_lbl': 'होम', 'nav_withdraw_lbl': 'निकासी', 'nav_share_lbl': 'शेयर करें',
-                'placeholder_upi': 'अपनी UPI ID दर्ज करें',
-                'placeholder_coins': 'Coins में राशि डालें'
-            },
-            'en': {
-                'modal_ok_btn': 'OK',
-                'inbox_title': 'Your Important Alerts',
-                'inbox_clear_all': 'Clear All',
-                'noti_msg_1': '<b>✅ WatchMitra Team:</b> Your withdrawal has been transferred successfully.',
-                'noti_msg_2': '<b>🚨 WatchMitra Team:</b> Task Rejected (Fraud Detected)! Please upload valid screenshot.',
-                'daily_reward_title': '🎁 Daily Reward Streak',
-                'daily_reward_desc': 'Claim your daily login bonus',
-                'daily_reward_btn': 'Claim Now',
-                'day_1': 'Day 1', 'day_2': 'Day 2', 'day_3': 'Day 3', 'day_4': 'Day 4', 'day_5': 'Day 5',
-                'lucky_spin_title': '🎡 Lucky Spin Wheel',
-                'track_01': 'Track 01', 'track_02': 'Lo-Fi 02', 'track_03': 'Bollywood Mashup', 'track_04': 'Gaming Music',
-                'video_claim_btn': '📺 Play Video & Watch for 3 Mins',
-                'player_ready': 'Player is ready...',
-                'cpa_section_title': 'Special Brother-Value Tasks (3-in-1 Matrix)',
-                'task1_title': 'Download Finance App', 'task1_desc': 'Install and register an account',
-                'task2_title': 'Register Crypto Wallet', 'task2_desc': 'Create account & complete KYC verification',
-                'task3_title': 'Follow on Instagram', 'task3_desc': 'Follow our official Instagram page',
-                'task_link_btn': 'Open Link',
-                'screenshot_lbl': 'Screenshot',
-                'no_file_lbl': 'No file chosen',
-                'submit_btn': 'Submit',
-                'withdraw_center_title': '🏦 Withdrawal Center',
-                'withdraw_submit_btn': 'Submit Request',
-                'invite_card_title': 'Invite Friends',
-                'invite_card_desc': 'Share on any platform (WhatsApp, Telegram, SMS) and earn cash!',
-                'your_link_lbl': 'Your Personal Invite Link:',
-                'copy_btn': 'Copy',
-                'big_share_btn': 'Direct Invite Share',
-                'nav_home_lbl': 'Home', 'nav_withdraw_lbl': 'Withdraw', 'nav_share_lbl': 'Share App',
-                'placeholder_upi': 'Enter your UPI ID',
-                'placeholder_coins': 'Enter amount in Coins'
-            }
-        };
+        const wheelRewards = ["+10", "+50", "Try Again", "+100", "+20", "+250"];
+        const wheelColors = ["#1e1b4b", "#311042", "#111827", "#022c22", "#311042", "#4c0519"];
+        let isWheelSpinning = false;
+        let audioCtx = null;
+        let pressTimer;
 
-        // ⚡ 1. व्हाइट स्क्रीन प्रोटेक्शन लॉजिक (कैशे फोर्स रीलोड)
-        window.onpageshow = function(evt) {
-            if (evt.persisted) {
-                window.location.reload();
-            }
-        };
+        function playWatchMitraMasterSound() {
+            try {
+                if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+                if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+                let osc = audioCtx.createOscillator(); let gain = audioCtx.createGain();
+                osc.type = 'sine'; osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                osc.connect(gain); gain.connect(audioCtx.destination);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.15);
+            } catch(e) {}
+        }
 
-        // शुरुआत में सेटअप करें
-        window.addEventListener('DOMContentLoaded', () => {
-            updateBalanceUI();
-            initializeLuckyWheelCanvas();
-            switchVideoIframe('dQw4w9WgXcQ', 0);
-            applyLanguagePlaceholders();
-            
-            // धीमा सा पुश टोस्ट सिमुलेशन
-            setTimeout(() => {
-                showTopPushToast("💸 लूट ऑफर एक्टिव!", "स्पिन व्हील घुमाएं और 250 कॉइन्स तक सीधे जीतें।");
+        const logoTrigger = document.getElementById('secret-header-trigger');
+        logoTrigger.addEventListener('touchstart', () => {
+            pressTimer = setTimeout(() => {
+                playWatchMitraMasterSound();
+                if(prompt("🔒 एडमिन पासवर्ड दर्ज करें:") === "9911") {
+                    document.getElementById('nav-admin-tab').style.display = 'flex';
+                    alert("🔓 सीक्रेट कंट्रोल रूम एक्टिवेटेड!");
+                }
             }, 3000);
         });
+        logoTrigger.addEventListener('touchend', () => clearTimeout(pressTimer));
 
-        // 🎛️ थीम-बेस्ड कस्टम अलर्ट मॉडल्स (No URL or App Title leaks)
-        function showWatchMitraModal(hiTitle, hiMsg, enTitle, enMsg) {
-            let finalTitle = (globalLanguage === 'hi') ? hiTitle : enTitle;
-            let finalMsg = (globalLanguage === 'hi') ? hiMsg : enMsg;
-            
-            document.getElementById('wm-modal-title-box').innerHTML = `🔔 ${finalTitle}`;
-            document.getElementById('wm-modal-desc-box').innerHTML = finalMsg;
-            document.getElementById('wm-custom-modal').style.display = 'flex';
+        function openInviteShareSystem() {
+            switchGlobalTab('share-page', 'nav-btn-share');
         }
 
-        function closeWatchMitraModal() {
-            document.getElementById('wm-custom-modal').style.display = 'none';
-        }
+        // 🔗 ADVANCED MULTI-PLATFORM WEBSHARE INTERFACE LOGIC
+        function executeLiveShareAction() {
+            const shareData = {
+                title: 'WatchMitra App',
+                text: 'WatchMitra ऐप डाउनलोड करें और वीडियो देखकर रोज़ाना पैसे कमाएं! मेरा इनवाइट कोड उपयोग करें: WM9911',
+                url: 'https://watchmitra.com/invite?code=WM9911'
+            };
 
-        // 🌐 भाषा बदलने का मुख्य फ़ंक्शन
-        function toggleLanguageSystem() {
-            globalLanguage = (globalLanguage === 'hi') ? 'en' : 'hi';
-            document.getElementById('lang-btn-text').innerText = (globalLanguage === 'hi') ? 'English' : 'हिंदी';
-            
-            // डेटा एट्रीब्यूट ट्रांसलेट प्रोसेस
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                let translationKey = element.getAttribute('data-i18n');
-                if (appTranslationDictionary[globalLanguage][translationKey]) {
-                    element.innerHTML = appTranslationDictionary[globalLanguage][translationKey];
-                }
-            });
-
-            applyLanguagePlaceholders();
-        }
-
-        function applyLanguagePlaceholders() {
-            const upiInput = document.getElementById('input-upi');
-            const coinsInput = document.getElementById('input-coins');
-            if(upiInput && coinsInput) {
-                upiInput.placeholder = appTranslationDictionary[globalLanguage][upiInput.id === 'input-upi' ? 'placeholder_upi' : ''];
-                coinsInput.placeholder = appTranslationDictionary[globalLanguage][coinsInput.id === 'input-coins' ? 'placeholder_coins' : ''];
-            }
-        }
-
-        // कॉइन बैलेंस रेंडरर
-        function updateBalanceUI() {
-            let rupees = (userBalanceCoins / 100).toFixed(2);
-            document.getElementById('header-coins').innerText = `${userBalanceCoins} Coins (₹${rupees})`;
-        }
-
-        // पेज नेविगेटर
-        function navigatePage(targetPageId, navButtonId) {
-            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            
-            document.getElementById(targetPageId).style.display = 'block';
-            document.getElementById(navButtonId).classList.add('active');
-            
-            if(targetPageId === 'notification-inbox-section') {
-                document.getElementById('notification-inbox-section').style.display = 'block';
-                document.getElementById('home-page').style.display = 'block'; // मिक्स्ड विज़िबिलिटी रीस्टोर
-            }
-        }
-
-        // नोटिफिकेशन बॉक्स विज़िबिलिटी
-        function toggleNotificationInbox() {
-            let box = document.getElementById('notification-inbox-section');
-            if(box.style.display === 'none' || box.style.display === '') {
-                box.style.display = 'block';
+            if (navigator.share) {
+                navigator.share(shareData)
+                .then(() => {
+                    localCoins += 2000;
+                    refreshUIVars();
+                    alert("🎁 बधाई हो! शेयर करने के लिए आपको +2000 Coins मिले हैं।");
+                })
+                .catch((err) => {
+                    console.log("Share cancelled or failed", err);
+                });
             } else {
-                box.style.display = 'none';
+                // FALLBACK FOR DESKTOP BROWSERS
+                navigator.clipboard.writeText(shareData.url);
+                localCoins += 2000;
+                refreshUIVars();
+                alert("📋 इनवाइट लिंक क्लिपबोर्ड पर कॉपी हो गया है! (ब्लूटूथ या किसी भी ऐप पर पेस्ट करें) +2000 Coins क्रेडिटेड।");
             }
-        }
-
-        function clearAllNotifications() {
-            document.getElementById('notifications-list-container').innerHTML = `<p style="text-align:center; font-size:12px; color:#6b7280; padding:10px;">कोई नोटिफिकेशन नहीं है</p>`;
-            document.getElementById('noti-count-badge').style.display = 'none';
-        }
-
-        // पुश टोस्ट मैकेनिज्म
-        function showTopPushToast(title, body) {
-            document.getElementById('noti-title').innerText = title;
-            document.getElementById('noti-body').innerText = body;
-            document.getElementById('push-toast').style.top = '15px';
-            setTimeout(closePushToast, 5000);
-        }
-        function closePushToast() {
-            document.getElementById('push-toast').style.top = '-120px';
         }
 
         function forceSyncRefreshState() {
-            document.querySelector('.refresh-btn i').classList.add('fa-spin');
-            setTimeout(() => {
-                document.querySelector('.refresh-btn i').classList.remove('fa-spin');
-                showWatchMitraModal("सिंक सफल", "सर्वर डेटा सफलतापूर्वक रीफ्रेश कर दिया गया है!", "Sync Success", "Server data has been successfully refreshed!");
-            }, 1200);
+            playWatchMitraMasterSound();
+            refreshUIVars();
+            alert("🔄 क्लाउड सिंक रीफ्रेश पूरी तरह सफल!");
         }
 
-        // 💸 डेली रिवॉर्ड बोनस क्लेम
-        function triggerWinWinStreakBonus() {
-            document.getElementById('sday-1').classList.add('completed');
-            userBalanceCoins += 20;
-            updateBalanceUI();
-            document.getElementById('daily-bonus-btn').disabled = true;
-            document.getElementById('daily-bonus-btn').style.background = '#374151';
-            document.getElementById('daily-bonus-btn').style.cursor = 'not-allowed';
+        function toggleNotificationInbox() {
+            let section = document.getElementById('notification-inbox-section');
+            section.style.display = (section.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function injectAdminCustomAlert(type, text) {
+            let container = document.getElementById('notifications-list-container');
+            let cssClass = type === 'success' ? 'noti-success' : 'noti-failed';
+            container.innerHTML = `<div class="noti-item ${cssClass}"><b>🔔 अलर्ट:</b> ${text}</div>` + container.innerHTML;
+            document.getElementById('noti-title').innerText = "🔔 सिस्टम अपडेट";
+            document.getElementById('noti-body').innerText = text;
+            document.getElementById('push-toast').style.top = "15px";
+        }
+
+        function closePushToast() { document.getElementById('push-toast').style.top = "-120px"; }
+
+        function submitCpaTaskProof(id, amt, label) {
+            const fileInput = document.getElementById('file-' + id);
+            if(!fileInput.files || fileInput.files.length === 0) return alert("⚠️ कृपया स्क्रीनशॉट अपलोड करें!");
             
-            showWatchMitraModal("बोनस क्लेम हुआ", "बधाई हो! दिन 1 का बोनस +20 कॉइन्स आपके वॉलेट में क्रेडिट कर दिया गया है।", "Bonus Claimed", "Congratulations! Day 1 bonus +20 Coins has been credited to your wallet.");
+            localCoins += amt;
+            localStorage.setItem('t_v17_' + id, 'done');
+            refreshUIVars();
+            alert(`🎉 ${label} टास्क सबमिट हुआ! +${amt} कॉइन्स जोड़े गए।`);
         }
 
-        // 🎡 लकी स्पिन व्हील कैनवास इंजन (रीस्टोर और वर्किंग)
-        const wheelCanvas = document.getElementById('wheel-canvas');
-        const wheelCtx = wheelCanvas.getContext('2d');
-        const wheelSectors = ["+10", "+50", "Try Again", "+100", "+20", "+250"];
-        const sectorColors = ["#1e1b4b", "#311042", "#022c22", "#3b0764", "#180029", "#064e3b"];
-        let isWheelSpinning = false;
+        function handleWithdrawSubmit() {
+            let upi = document.getElementById('input-upi').value;
+            let amt = parseInt(document.getElementById('input-coins').value);
+            if(!upi || !amt) return alert("⚠️ सभी फ़ील्ड भरें!");
+            if(amt > localCoins) return alert("⚠️ अपर्याप्त बैलेंस!");
+            
+            localCoins -= amt;
+            refreshUIVars();
+            alert("💸 निकासी अनुरोध सबमिट हुआ!");
+        }
 
-        function initializeLuckyWheelCanvas() {
-            let angleStep = (2 * Math.PI) / wheelSectors.length;
-            for (let i = 0; i < wheelSectors.length; i++) {
-                wheelCtx.beginPath();
-                wheelCtx.fillStyle = sectorColors[i];
-                wheelCtx.moveTo(110, 110);
-                wheelCtx.arc(110, 110, 105, i * angleStep, (i + 1) * angleStep);
-                wheelCtx.lineTo(110, 110);
-                wheelCtx.fill();
-                
-                // टेक्स्ट रेंडरिंग
-                wheelCtx.save();
-                wheelCtx.translate(110, 110);
-                wheelCtx.rotate(i * angleStep + angleStep / 2);
-                wheelCtx.fillStyle = "#ffffff";
-                wheelCtx.font = "bold 11px sans-serif";
-                wheelCtx.textAlign = "right";
-                wheelCtx.fillText(wheelSectors[i], 90, 4);
-                wheelCtx.restore();
+        function refreshUIVars() {
+            localStorage.setItem('appCoins_v47', localCoins);
+            let convertedRupees = (localCoins / 100).toFixed(2);
+            document.getElementById('header-coins').innerText = `${localCoins} Coins (₹${convertedRupees})`;
+            if(document.getElementById('profile-coins-lbl')) { document.getElementById('profile-coins-lbl').innerText = `${localCoins} Coins (₹${convertedRupees})`; }
+            
+            ['task1', 'task2', 'task3'].forEach(id => {
+                if(localStorage.getItem('t_v17_' + id) === 'done' && document.getElementById('container-' + id)) {
+                    document.getElementById('container-' + id).innerHTML = `<div class="task-meta"><div><h5 style="color:#6b7280; text-decoration:line-through;">टास्क पूरा हो चुका है</h5></div><button class="task-btn completed" disabled>डन</button></div>`;
+                }
+            });
+        }
+
+        function onYouTubeIframeAPIReady() {
+            ytPlayer = new YT.Player('player-frame', {
+                videoId: 'dQw4w9WgXcQ',
+                playerVars: { 'playsinline': 1, 'controls': 1, 'rel': 0 },
+                events: { 'onStateChange': onPlayerStateChange }
+            });
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                document.getElementById('video-status-lbl').innerText = "🛡️ एंटी-फॉरवर्ड सुरक्षा सक्रिय है...";
+                clearInterval(watchTimerInterval);
+                watchTimerInterval = setInterval(() => {
+                    if (ytPlayer && typeof ytPlayer.getCurrentTime === 'function') {
+                        let currentTime = ytPlayer.getCurrentTime();
+                        if (currentTime - lastValidTime > 1.5) { ytPlayer.seekTo(lastValidTime); return; }
+                        lastValidTime = currentTime; secondsWatched++;
+                        let pct = Math.min((secondsWatched / TARGET_SECONDS) * 100, 100);
+                        document.getElementById('video-progress-fill').style.width = pct + "%";
+                        document.getElementById('claim-video-btn').innerText = `⏳ वीडियो देखें (${TARGET_SECONDS - secondsWatched}s बचे)`;
+                        if (secondsWatched >= TARGET_SECONDS) {
+                            videoWatchDone = true; clearInterval(watchTimerInterval);
+                            document.getElementById('claim-video-btn').className = 'reward-btn active';
+                            document.getElementById('claim-video-btn').innerText = '🔥 बड़ा रिवॉर्ड क्लेम करें (+150)';
+                        }
+                    }
+                }, 1000);
+            } else { clearInterval(watchTimerInterval); }
+        }
+
+        function switchVideoIframe(id, idx) {
+            if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+                ytPlayer.loadVideoById(id); videoWatchDone = false; secondsWatched = 0; lastValidTime = 0;
+                document.getElementById('video-progress-fill').style.width = "0%";
+                document.querySelectorAll('.v-sel-btn').forEach(b => b.classList.remove('playing'));
+                document.getElementById('vchan-' + idx).classList.add('playing');
             }
-        }
-
-        function handleWheelClickLogic() {
-            if (isWheelSpinning) return;
-            isWheelSpinning = true;
-            document.getElementById('wheel-status-lbl').innerText = (globalLanguage === 'hi') ? "व्हील घूम रहा है..." : "Spinning...";
-            
-            let randomDeg = Math.floor(3000 + Math.random() * 2000);
-            wheelCanvas.style.transform = `rotate(${randomDeg}deg)`;
-            
-            setTimeout(() => {
-                isWheelSpinning = false;
-                document.getElementById('wheel-status-lbl').innerText = "";
-                userBalanceCoins += 50;
-                updateBalanceUI();
-                showWatchMitraModal("लकी स्पिन रिवॉर्ड", "💥 बधाई हो भाई! आपको लकी स्पिन से +50 कॉइन्स मिले हैं।", "Lucky Spin Reward", "💥 Congratulations! You won +50 Coins from the lucky wheel.");
-            }, 4000);
-        }
-
-        // 📺 वीडियो प्लेयर सिमुलेटर इंजन
-        function switchVideoIframe(ytId, activeIdx) {
-            document.querySelectorAll('.v-sel-btn').forEach(btn => btn.classList.remove('playing'));
-            document.getElementById(`vchan-${activeIdx}`).classList.add('playing');
-            
-            document.getElementById('player-frame').innerHTML = `<iframe id="yt-player" src="https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&controls=0&rel=0" allow="autoplay"></iframe>`;
-            
-            // प्रोग्रेस रिसेट और ट्रैक रीस्टार्ट
-            clearInterval(videoProgressInterval);
-            videoProgressPercent = 0;
-            document.getElementById('video-progress-fill').style.width = '0%';
-            
-            let remainingSec = 180;
-            document.getElementById('claim-video-btn').className = 'reward-btn';
-            document.getElementById('claim-video-btn').disabled = true;
-            
-            videoProgressInterval = setInterval(() => {
-                remainingSec--;
-                videoProgressPercent += (100 / 180);
-                document.getElementById('video-progress-fill').style.width = `${videoProgressPercent}%`;
-                
-                if(globalLanguage === 'hi') {
-                    document.getElementById('claim-video-btn').innerText = `⏳ वीडियो देखें (${remainingSec}s बचे)`;
-                    document.getElementById('video-status-lbl').innerText = "एंटी-फॉरवर्ड सुरक्षा सक्रिय है...";
-                } else {
-                    document.getElementById('claim-video-btn').innerText = `⏳ Watching (${remainingSec}s left)`;
-                    document.getElementById('video-status-lbl').innerText = "Anti-forward protection active...";
-                }
-                
-                if(remainingSec <= 0) {
-                    clearInterval(videoProgressInterval);
-                    document.getElementById('claim-video-btn').className = 'reward-btn active';
-                    document.getElementById('claim-video-btn').disabled = false;
-                    document.getElementById('claim-video-btn').innerText = (globalLanguage === 'hi') ? "🎁 रिवॉर्ड क्लेम करें (+100)" : "🎁 Claim Reward (+100)";
-                    document.getElementById('video-status-lbl').innerText = (globalLanguage === 'hi') ? "टास्क पूरा हुआ! क्लेम करें।" : "Task complete! Claim now.";
-                }
-            }, 1000);
         }
 
         function claimVideoCoins() {
-            userBalanceCoins += 100;
-            updateBalanceUI();
-            document.getElementById('claim-video-btn').className = 'reward-btn';
-            document.getElementById('claim-video-btn').disabled = true;
-            document.getElementById('claim-video-btn').innerText = (globalLanguage === 'hi') ? "क्लेम कर लिया गया है" : "Already Claimed";
-            showWatchMitraModal("सफलता", "म्यूज़िक वीडियो देखने के लिए +100 कॉइन्स आपके खाते में जुड़ गए हैं।", "Success", "+100 Coins successfully added for watching the video.");
+            if(!videoWatchDone) return alert("सुरक्षा लॉक: 3 मिनट पूरा देखें!");
+            localCoins += 150; videoWatchDone = false; secondsWatched = 0;
+            refreshUIVars(); alert("🎉 सफलता: +150 कॉइन्स जोड़े गए!");
         }
 
-        // 📸 सीपीए टास्क जोन मैनेजर
-        function activateUploadZone(taskId) {
-            document.getElementById(`zone-${taskId}`).style.display = 'flex';
-        }
-
-        function showFileFeedback(taskId) {
-            const fileInput = document.getElementById(`file-${taskId}`);
-            if(fileInput.files.length > 0) {
-                document.getElementById(`feed-${taskId}`).innerText = fileInput.files[0].name;
-                document.getElementById(`feed-${taskId}`).style.color = '#00ff66';
-            }
-        }
-
-        function submitCpaTaskProof(taskId, coins, taskName) {
-            const fileInput = document.getElementById(`file-${taskId}`);
-            if(fileInput.files.length === 0) {
-                showWatchMitraModal("फ़ाइल गायब है", "कृपया सबमिट करने से पहले स्क्रीनशॉट प्रमाण अपलोड करें!", "Missing File", "Please upload a screenshot proof before submitting!");
-                return;
-            }
-            
-            document.getElementById(`container-${taskId}`).style.opacity = '0.4';
-            document.getElementById(`zone-${taskId}`).innerHTML = `<span style="color:var(--primary); font-size:11px; font-weight:700;"><i class="fa-solid fa-spinner fa-spin"></i> वेरीफाइंग...</span>`;
-            
+        function handleWheelClickLogic() {
+            if (isWheelSpinning) return; isWheelSpinning = true;
+            const targetIndex = Math.floor(Math.random() * wheelRewards.length);
+            const finalAngle = (360 - (targetIndex * 60)) - 30;
+            document.getElementById("wheel-canvas").style.transform = `rotate(${finalAngle + 1800}deg)`;
             setTimeout(() => {
-                userBalanceCoins += coins;
-                updateBalanceUI();
-                document.getElementById(`container-${taskId}`).style.display = 'none';
-                showWatchMitraModal("टास्क सबमिट हुआ", `आपका '${taskName}' टास्क सबमिट हो गया है। वेरीफाई होते ही +${coins} कॉइन्स ट्रांसफर होंगे।`, "Task Submitted", `Your '${taskName}' task submitted. +${coins} coins will transfer post verification.`);
-            }, 2000);
+                let prize = wheelRewards[targetIndex];
+                if (prize !== "Try Again") { localCoins += parseInt(prize.replace("+","")); }
+                isWheelSpinning = false; refreshUIVars();
+                alert(`व्हील रिवॉर्ड: ${prize}`);
+            }, 4050);
         }
 
-        // 🏦 विड्रॉल वैलीडेशन सिस्टम
-        function handleWithdrawSubmit() {
-            let upiValue = document.getElementById('input-upi').value;
-            let coinsValue = parseInt(document.getElementById('input-coins').value);
-            
-            if(!upiValue || !coinsValue) {
-                showWatchMitraModal("अपूर्ण फ़ील्ड", "कृपया सभी बॉक्स सही ढंग से भरें!", "Incomplete Fields", "Please fill all boxes correctly!");
-                return;
-            }
-            if(coinsValue > userBalanceCoins) {
-                showWatchMitraModal("अपर्याप्त राशि", "आपके पास विड्रॉल करने के लिए इतने कॉइन्स नहीं हैं!", "Insufficient Balance", "You do not have enough coins to withdraw!");
-                return;
-            }
-            
-            userBalanceCoins -= coinsValue;
-            updateBalanceUI();
-            document.getElementById('input-upi').value = "";
-            document.getElementById('input-coins').value = "";
-            
-            showWatchMitraModal("अनुरोध प्राप्त हुआ", "निकासी अनुरोध दर्ज हो गया है। 24 घंटे के अंदर पेमेंट बैंक खाते में आ जाएगा।", "Request Received", "Withdrawal submitted. Payment will hit your account within 24 hours.");
-        }
-
-        // 🔗 3. नेटिव शेयर बटन फिक्स (सिस्टम शेयर डायलॉग)
-        function openInviteShareSystem() {
-            let textMsg = "WatchMitra App पर हर रोज़ मज़ेदार म्यूज़िक सुनो, टास्क पूरे करो और रियल कैश कमाओ! मेरा इनवाइट कोड यूज़ करें। लिंक: " + window.location.href;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'WatchMitra Official',
-                    text: textMsg,
-                    url: window.location.href
-                }).then(() => {
-                    // सिर्फ सफल नेटिव शेयर पर रिवॉर्ड
-                    userBalanceCoins += 2000;
-                    updateBalanceUI();
-                    showWatchMitraModal("शेयर बोनस", "🚀 थैंक यू भाई! सफलतापूर्वक शेयर करने के लिए आपको +2000 कॉइन्स दिए गए हैं।", "Share Bonus", "🚀 Thank you! You received +2000 Coins for sharing successfully.");
-                }).catch((err) => {
-                    console.log("Share cancelled by user");
-                });
-            } else {
-                // डेस्कटॉप या अनसपोर्टेड ब्राउज़र के लिए बैकअप क्लिपबोर्ड कॉपी
-                copyToClipboardFallback();
+        function renderGraphicWheel() {
+            const canvas = document.getElementById("wheel-canvas"); if (!canvas) return;
+            const ctx = canvas.getContext("2d");
+            for (let i = 0; i < 6; i++) {
+                ctx.fillStyle = wheelColors[i]; ctx.beginPath(); ctx.moveTo(110, 110);
+                ctx.arc(110, 110, 105, i * 1.047 - Math.PI/2, (i+1) * 1.047 - Math.PI/2); ctx.fill();
+                ctx.save(); ctx.fillStyle = "#fff"; ctx.translate(110, 110); ctx.rotate(i * 1.047 - Math.PI/2 + 0.523);
+                ctx.textAlign = "right"; ctx.fillText(wheelRewards[i], 92, 4); ctx.restore();
             }
         }
 
-        function copyToClipboardFallback() {
-            const linkField = document.getElementById('invite-link-field');
-            linkField.select();
-            linkField.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(linkField.value);
-            
-            userBalanceCoins += 2000;
-            updateBalanceUI();
-            
-            showWatchMitraModal("लिंक कॉपीड", "📋 इनवाइट लिंक क्लिपबोर्ड पर कॉपी हो गया है! (इसे कहीं भी पेस्ट करें) +2000 Coins क्रेडिटेड।", "Link Copied", "📋 Invite link copied to clipboard! +2000 Coins credited.");
+        function triggerWinWinStreakBonus() { localCoins += 20; refreshUIVars(); alert("🎉 लॉगिन बोनस क्लेम हुआ!"); }
+        function activateUploadZone(id) { document.getElementById('zone-' + id).style.display = 'block'; }
+        function showFileFeedback(id) { document.getElementById('feed-' + id).innerText = "चयनित हो गया"; }
+        
+        function switchGlobalTab(pId, nId) {
+            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(pId).style.display = 'block'; document.getElementById(nId).classList.add('active');
+            document.getElementById('notification-inbox-section').style.display = 'none'; 
         }
+
+        refreshUIVars();
+        setTimeout(renderGraphicWheel, 300);
     </script>
 </body>
 </html>
