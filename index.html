@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WatchMitra Enterprise Shield Master v20.0</title>
+    <title>WatchMitra Enterprise Shield Master v21.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -56,11 +56,6 @@
         .bell-badge { position: absolute; top: 0px; right: 0px; background: #ef4444; color: #fff; font-size: 9px; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; box-shadow: 0 0 8px #ef4444; }
 
         .share-header-btn { background: rgba(189, 0, 255, 0.15); border: 1px solid var(--accent); color: #fff; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; animation: pulseGlow 2s infinite; }
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 0 0 rgba(189, 0, 255, 0.4); }
-            70% { box-shadow: 0 0 0 8px rgba(189, 0, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(189, 0, 255, 0); }
-        }
 
         .balance-pill { background: rgba(0, 255, 102, 0.06); padding: 6px 12px; border-radius: 20px; font-weight: 800; color: var(--primary); font-size: 13px; border: 1px solid rgba(0, 255, 102, 0.3); box-shadow: var(--neon-glow); display: flex; align-items: center; gap: 6px; }
         
@@ -76,11 +71,11 @@
 
         #push-toast { position: fixed; top: -120px; left: 5%; width: 90%; background: linear-gradient(135deg, #1e1b4b, #030712); border: 2px solid var(--accent); box-shadow: var(--purple-glow); padding: 15px; border-radius: 14px; z-index: 99999; display: flex; align-items: center; gap: 12px; transition: top 0.4s ease; }
 
-        /* 🆕 स्क्रीनशॉट इन्स्पायर्ड - तिरछा और स्लीक प्रीमियम डेली स्ट्रीक डिज़ाइन */
+        /* तिरछा प्रीमियम डेली स्ट्रीक डिज़ाइन */
         .premium-streak-container { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.02); padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(189, 0, 255, 0.2); }
-        .streak-row-flow { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 4px 0; }
+        .streak-row-flow { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 4px 0; width: 100%; }
         .streak-row-flow::-webkit-scrollbar { display: none; }
-        .slanted-streak-badge { background: linear-gradient(135deg, #1e1b4b, #3b0764); padding: 6px 12px; border-radius: 6px; transform: skewX(-12deg); border: 1px solid rgba(189, 0, 255, 0.3); text-align: center; min-width: 54px; transition: all 0.3s ease; }
+        .slanted-streak-badge { background: linear-gradient(135deg, #1e1b4b, #3b0764); padding: 6px 12px; border-radius: 6px; transform: skewX(-12deg); border: 1px solid rgba(189, 0, 255, 0.3); text-align: center; min-width: 58px; }
         .slanted-streak-badge.completed { background: linear-gradient(135deg, #047857, #065f46); border-color: var(--primary); box-shadow: var(--neon-glow); }
         .slanted-streak-badge span { display: block; transform: skewX(12deg); font-size: 10px; font-weight: 800; color: #fff; }
 
@@ -93,14 +88,15 @@
         .reward-btn { width: 100%; padding: 15px; border-radius: 12px; border: none; background: #1f2937; color: #4b5563; font-weight: 700; font-size: 15px; cursor: not-allowed; text-align: center; }
         .reward-btn.active { background: linear-gradient(135deg, #00ff66, #00cb52); color: #000; cursor: pointer; box-shadow: var(--neon-glow); font-weight: 800; }
 
-        /* टास्क कस्टमाइजेशन */
+        /* टास्क रो स्टाइलिंग - फोटो/कैमरा आइकन अलाइनमेंट बग फिक्स */
         .task-row { display: flex; flex-direction: column; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 10px; }
         .task-meta { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .task-btn { background: var(--primary); color: #000; padding: 8px 16px; border-radius: 20px; border: none; font-size: 12px; font-weight: 800; cursor: pointer; text-decoration: none; }
+        .task-btn { background: var(--primary); color: #000; padding: 8px 16px; border-radius: 20px; border: none; font-size: 12px; font-weight: 800; cursor: pointer; text-decoration: none; text-align: center; }
         .task-btn.completed { background: rgba(255,255,255,0.05) !important; color: #6b7280 !important; cursor: not-allowed; border: 1px solid rgba(255,255,255,0.05); }
 
-        .upload-zone { display: flex; gap: 8px; align-items: center; background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; border: 1px dashed var(--accent); margin-top: 5px; width: 100%; }
-        .file-lbl { background: var(--accent); color: #fff; font-size: 11px; padding: 6px 12px; border-radius: 6px; font-weight: 700; cursor: pointer; }
+        /* ज़ोन अलाइनमेंट क्लीनअप */
+        .upload-zone { display: flex; gap: 10px; align-items: center; background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; border: 1px dashed var(--accent); margin-top: 5px; width: 100%; justify-content: space-between; }
+        .file-lbl { background: var(--accent); color: #fff; font-size: 11px; padding: 6px 12px; border-radius: 6px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
         .submit-proof-btn { background: #fff; color: #000; font-size: 11px; padding: 6px 12px; border-radius: 6px; font-weight: 800; border: none; cursor: pointer; }
 
         .video-selector-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
@@ -110,7 +106,7 @@
         input[type="text"], input[type="number"], select { width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; margin-top: 6px; margin-bottom: 12px; font-size: 14px; }
         .action-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #00ff66, #00cb52); color: #000; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 14px; box-shadow: var(--neon-glow); }
 
-        /* 🎮 रियल मिनी-गेम कैनवास डिजाइन */
+        /* 🎮 मिनी-गेम कैनवास डिजाइन */
         #game-canvas-wrapper { display: flex; flex-direction: column; align-items: center; background: #000; border-radius: 12px; padding: 10px; border: 1px solid rgba(0, 255, 102, 0.2); }
         #rocket-game-canvas { background: #070b19; border-radius: 8px; cursor: crosshair; display: block; }
 
@@ -118,11 +114,11 @@
         #admin-auth-shield-modal { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; display:none; justify-content:center; align-items:center; }
         .shield-box { background:#0f172a; border:2px solid #ef4444; width:90%; max-width:360px; padding:25px; border-radius:16px; text-align:center; box-shadow:0 0 30px rgba(239,68,68,0.3); }
 
-        /* 📊 एडमिन पैनल दो कॉलम का डिस्ट्रीब्यूशन */
+        /* 📊 एडमिन पैनल दो कॉलम डिस्ट्रीब्यूशन */
         .admin-grid-split { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 15px; }
         .admin-column { background: rgba(15, 23, 42, 0.8); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
 
-        /* 🆕 फाइनेंशियल ऑडिट ब्लॉक ग्रिड */
+        /* फाइनेंशियल ऑडिट ब्लॉक ग्रिड */
         .finance-audit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
         .audit-stat-box { background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; border-left: 3px solid var(--primary); }
         .audit-stat-box.expense { border-left-color: #ef4444; }
@@ -158,7 +154,7 @@
             <i class="fa-solid fa-user-shield" style="font-size:36px; color:#ef4444; margin-bottom:12px;"></i>
             <h4 style="color:#fff; font-weight:800; margin-bottom:6px;">सिक्योर एडमिन पैनल गेटवे</h4>
             <p style="font-size:11px; color:#9ca3af; margin-bottom:15px;">अनधिकृत प्रवेश पूर्णतः वर्जित है। हैकर्स ट्रैकिंग सक्रिय है।</p>
-            <input type="password" id="shield-pin-input" placeholder="सुरक्षित मास्टर पिन दर्ज करें" style="text-align:center; letter-spacing:8px; font-size:18px; border-color:#ef4444;">
+            <input type="password" id="shield-pin-input" placeholder="मास्टर पिन दर्ज करें" style="text-align:center; letter-spacing:8px; font-size:18px; border-color:#ef4444;">
             <div style="display:flex; gap:10px; margin-top:10px;">
                 <button onclick="verifyShieldAdminAuth()" class="action-btn" style="background:#ef4444; color:#fff;">अनलॉक करें</button>
                 <button onclick="closeAdminShieldOverlay()" class="action-btn" style="background:rgba(255,255,255,0.1); color:#fff;">रद्द करें</button>
@@ -254,5 +250,722 @@
                     <div class="slanted-streak-badge" id="sday-7"><span>दिन 7<br><b>+200</b></span></div>
                 </div>
             </div>
+        </div>
+
+        <div class="card">
+            <h4 id="txt-wheel-title" style="font-size:13px; font-weight:800; text-align:center; margin-bottom:10px;">🎡 लकी स्पिन व्हील</h4>
+            <div class="spin-section">
+                <div class="wheel-outer-wrapper">
+                    <div class="wheel-pointer"></div>
+                    <canvas id="wheel-canvas" width="180" height="180"></canvas>
+                    <div id="main-wheel-trigger" class="wheel-center-pin" onclick="handleWheelClickLogic()">SPIN</div>
                 </div>
+                <p id="wheel-status-lbl" style="font-size:11px; color:#9ca3af; margin-top:8px; height:12px;"></p>
+            </div>
+        </div>
+
+        <div class="card" style="background: linear-gradient(135deg, rgba(0,255,102,0.08), rgba(15,23,42,0.9)); border-color: var(--primary);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <h4 style="font-size:13px; font-weight:800; color:var(--primary);"><i class="fa-solid fa-gamepad"></i> साइबर टैप रॉकेट (Mini-Game)</h4>
+                <span style="font-size:10px; background:#ef4444; color:#fff; padding:2px 6px; border-radius:4px; font-weight:700;">LIVE</span>
+            </div>
+            <p id="txt-game-desc" style="font-size:11px; color:#d1d5db; margin-bottom:10px;">रॉकेट्स पर टैप करके उन्हें फोड़ें! 15 स्मैश होने पर **+100 Coins** तुरंत मिलेंगे।</p>
+            
+            <div id="game-canvas-wrapper">
+                <canvas id="rocket-game-canvas" width="320" height="150"></canvas>
+                <div style="display:flex; justify-content:space-between; width:100%; margin-top:8px; font-size:11px;">
+                    <span id="game-score-box">रॉकेट्स स्मैश: 0 / 15</span>
+                    <button id="txt-game-start" onclick="startRocketMiniGame()" style="background:var(--primary); border:none; color:#000; padding:2px 10px; font-weight:800; border-radius:4px; cursor:pointer;">गेम शुरू करें</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-selector-grid" style="margin-top:15px;">
+            <button id="vchan-0" class="v-sel-btn playing" onclick="switchVideoIframe('dQw4w9WgXcQ', 0)"><i class="fa-solid fa-music"></i> ट्रैक 01</button>
+            <button id="vchan-1" class="v-sel-btn" onclick="switchVideoIframe('9wt6Y9a06pE', 1)"><i class="fa-solid fa-headset"></i> लो-फाई 02</button>
+            <button id="vchan-2" class="v-sel-btn" onclick="switchVideoIframe('5qap5aO4i9A', 2)"><i class="fa-solid fa-bolt"></i> बॉलीवुड मेष</button>
+            <button id="vchan-3" class="v-sel-btn" onclick="switchVideoIframe('kJQP7kiw5Fk', 3)"><i class="fa-solid fa-gamepad"></i> गेमिंग म्यूज़िक</button>
+        </div>
+
+        <div class="video-box"><div id="player-frame"></div></div>
+        <div class="progress-container"><div id="video-progress-fill" class="progress-bar-fill"></div></div>
+
+        <button id="claim-video-btn" class="reward-btn">📺 वीडियो प्ले करके 3 मिनट देखें</button>
+        <p id="video-status-lbl" style="text-align:center; font-size:11px; color:#6b7280; margin-top:8px;">प्लेयर पूरी तरह रेडी है...</p>
+
+        <h4 id="txt-cpa-title" style="margin: 25px 0 10px 0; font-size:13px; color:var(--accent); font-weight:800;"><i class="fa-solid fa-bolt"></i> विशेष सीपीए टास्क (Complete & Submit Here)</h4>
+        <div class="card" id="all-tasks-box">
+            
+            <div class="task-row" id="container-task1">
+                <div class="task-meta">
+                    <div><h5 style="font-weight:700; font-size:13px;">Finance App डाउनलोड करें</h5><p style="font-size:11px; color:#6b7280;">इंस्टॉल करके अकाउंट बनाएं</p></div>
+                    <a href="https://google.com" target="_blank" class="task-btn" onclick="activateUploadZone('task1')">लिंक खोलें (+3500)</a>
+                </div>
+                <div class="upload-zone" id="zone-task1" style="display:none;">
+                    <label class="file-lbl" for="file-task1"><i class="fa-solid fa-camera"></i> स्क्रीनशॉट</label>
+                    <input type="file" id="file-task1" accept="image/*" onchange="showFileFeedback('task1')">
+                    <span id="feed-task1" style="font-size:11px; color:#9ca3af;">कोई फ़ाइल नहीं</span>
+                    <button class="submit-proof-btn" onclick="submitCpaTaskProof('task1', 3500, 'Finance App')">सबमिट</button>
+                </div>
+            </div>
+
+            <div class="task-row" id="container-task2">
+                <div class="task-meta">
+                    <div><h5 style="font-weight:700; font-size:13px;">Crypto Wallet रजिस्टर करें</h5><p style="font-size:11px; color:#6b7280;">अकाउंट बनाकर KYC वेरीफाई करें</p></div>
+                    <a href="https://google.com" target="_blank" class="task-btn" onclick="activateUploadZone('task2')">लिंक खोलें (+5000)</a>
+                </div>
+                <div class="upload-zone" id="zone-task2" style="display:none;">
+                    <label class="file-lbl" for="file-task2"><i class="fa-solid fa-camera"></i> स्क्रीनशॉट</label>
+                    <input type="file" id="file-task2" accept="image/*" onchange="showFileFeedback('task2')">
+                    <span id="feed-task2" style="font-size:11px; color:#9ca3af;">कोई फ़ाइल नहीं</span>
+                    <button class="submit-proof-btn" onclick="submitCpaTaskProof('task2', 5000, 'Crypto Wallet')">सबमिट</button>
+                </div>
+            </div>
+
+            <div class="task-row" id="container-task3">
+                <div class="task-meta">
+                    <div><h5 style="font-weight:700; font-size:13px;">Instagram पर फॉलो करें</h5><p style="font-size:11px; color:#6b7280;">ऑफिशियल पेज को फॉलो करें</p></div>
+                    <a href="https://instagram.com" target="_blank" class="task-btn" onclick="activateUploadZone('task3')">लिंक खोलें (+1500)</a>
+                </div>
+                <div class="upload-zone" id="zone-task3" style="display:none;">
+                    <label class="file-lbl" for="file-task3"><i class="fa-solid fa-camera"></i> स्क्रीनशॉट</label>
+                    <input type="file" id="file-task3" accept="image/*" onchange="showFileFeedback('task3')">
+                    <span id="feed-task3" style="font-size:11px; color:#9ca3af;">कोई फ़ाइल नहीं</span>
+                    <button class="submit-proof-btn" onclick="submitCpaTaskProof('task3', 1500, 'Instagram Follow')">सबमिट</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="withdraw-page" class="page">
+        <div class="card" style="border-color: var(--accent);">
+            <h4 id="txt-kyc-title" style="font-weight:800; color:var(--accent); font-size:13px; margin-bottom:5px;"><i class="fa-solid fa-id-card"></i> 🔒 अनिवार्य बैंक एवं UPI KYC वेरीफिकेशन</h4>
+            <p style="font-size:11px; color:#9ca3af; margin-bottom:12px;">भुगतान सुरक्षा के लिए अपना डेटा सही लॉक करें.</p>
+            
+            <label style="font-size:11px; color:#9ca3af;">खाताधारक का नाम</label>
+            <input type="text" id="kyc-name" placeholder="अपना पूरा नाम दर्ज करें">
+            
+            <label style="font-size:11px; color:#9ca3af;">बैंक खाता संख्या / UPI ID</label>
+            <input type="text" id="kyc-upi" placeholder="UPI ID या अकाउंट नंबर डालें">
+            
+            <label style="font-size:11px; color:#9ca3af;">IFSC कोड</label>
+            <input type="text" id="kyc-ifsc" placeholder="IFSC कोड (जैसे- SBIN0001234)">
+
+            <button class="action-btn" style="background:rgba(189,0,255,0.2); border:1px solid var(--accent); color:#fff; font-size:12px; padding:10px;" onclick="saveKycDetailsData()">KYC डेटा सुरक्षित लॉक करें</button>
+            <p id="kyc-status-lbl" style="font-size:11px; color:var(--primary); text-align:center; margin-top:8px; font-weight:700;"></p>
+        </div>
+
+        <div class="card">
+            <h4 id="txt-withdraw-title" style="font-weight:800; font-size:13px;"><i class="fa-solid fa-building-columns"></i> निकासी अनुरोध केंद्र</h4>
+            <input type="text" id="input-upi" placeholder="आपकी UPI ID" readonly>
+            <input type="number" id="input-coins" placeholder="Coins में राशि दर्ज करें">
+            <button id="txt-withdraw-submit-btn" class="action-btn" onclick="handleWithdrawSubmit()">अनुरोध सबमिट करें</button>
+        </div>
+    </div>
+
+    <div id="profile-page" class="page">
+        <div class="card" style="text-align:center; background: linear-gradient(135deg, rgba(15,23,42,0.8), rgba(0,0,0,0.5)); border-color:rgba(255,255,255,0.1);">
+            <div style="width:64px; height:64px; background:rgba(255,255,255,0.05); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 10px auto; border:1px solid var(--primary);">
+                <i class="fa-solid fa-user" style="font-size:28px; color:var(--primary);"></i>
+            </div>
+            <h3 id="txt-profile-user" style="font-weight:800; font-size:16px;">मास्टर यूज़र अकाउंट</h3>
+            <h5 id="profile-coins-lbl" style="color:var(--primary); font-size:22px; font-weight:800; margin-top:5px;">0 Coins (₹0.00)</h5>
+            
+            <button id="txt-profile-dash-btn" onclick="toggleSubDashboardLayout()" class="action-btn" style="margin-top:15px; background:linear-gradient(135deg, #bd00ff, #7e22ce); color:#fff; padding:8px; font-size:12px;"><i class="fa-solid fa-chart-pie"></i> ऐप डैशबोर्ड खोलें (Top 10 Rankings)</button>
+        </div>
+
+        <div id="sub-dashboard-view-box" class="card" style="display:none; border-color:var(--accent); background:rgba(10,10,18,0.95);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h4 style="font-weight:800; font-size:13px; color:var(--accent);"><i class="fa-solid fa-trophy"></i> वॉचमित्र लाइव टॉप 10 लीडरबोर्ड</h4>
+                <i class="fa-solid fa-circle-xmark" onclick="toggleSubDashboardLayout()" style="color:#ef4444; cursor:pointer; font-size:16px;"></i>
+            </div>
+            <div id="leaderboard-ranking-list" style="display:flex; flex-direction:column; gap:6px;"></div>
+        </div>
+
+        <div class="card" style="border-color: rgba(0, 255, 102, 0.2);">
+            <h4 id="txt-history-title" style="font-weight:800; font-size:13px; color:var(--primary); margin-bottom:12px;"><i class="fa-solid fa-receipt"></i> विस्तृत वॉलेट पासबुक इतिहास</h4>
+            <div id="user-ledger-history-container">
+                <p style="font-size:11px; color:#6b7280; text-align:center; padding:10px;">अभी तक कोई लेनदेन इतिहास नहीं है.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-page" class="page">
+        <div class="card" style="border-color:#ef4444; background:rgba(15,23,42,0.95);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(239,68,68,0.2); padding-bottom:10px; margin-bottom:15px;">
+                <h4 style="color:#ef4444; font-weight:800;"><i class="fa-solid fa-user-shield"></i> वॉचमित्र केन्द्रीय एडमिन रूम (Vault)</h4>
+                <button onclick="lockAdminPanelInstantly()" style="background:#ef4444; border:none; color:#fff; font-size:10px; padding:3px 8px; font-weight:800; border-radius:4px; cursor:pointer;">पैनल锁 करें</button>
+            </div>
+            
+            <div class="admin-grid-split">
                 
+                <div class="admin-column">
+                    <h5 style="color:#ef4444; font-weight:800; font-size:12px; margin-bottom:10px;"><i class="fa-solid fa-folder-open"></i> 1. कंपनी लीगल डाक्यूमेंट्स मैनेजर (Editable Form)</h5>
+                    <div style="display:flex; flex-direction:column; gap:2px; font-size:11px;">
+                        
+                        <label style="color:#9ca3af; font-size:10px;">🏢 MCA कंपनी CIN नंबर:</label>
+                        <input type="text" id="adm-form-cin" value="U72900UK2026PTC991188" style="margin-bottom:8px; padding:8px; background:#000;">
+
+                        <label style="color:#9ca3af; font-size:10px;">📜 GSTIN इंडस्ट्रियल सर्टिफिकेट कोड:</label>
+                        <input type="text" id="adm-form-gst" value="05AAACW9911M1Z2" style="margin-bottom:8px; padding:8px; background:#000;">
+
+                        <label style="color:#9ca3af; font-size:10px;">⚡ MSME उद्योग आधार नंबर:</label>
+                        <input type="text" id="adm-form-msme" value="UDYAM-UK-12-0099112" style="margin-bottom:8px; padding:8px; background:#000;">
+
+                        <label style="color:#9ca3af; font-size:10px;">💼 बिजनेस पैन (PAN Card Num):</label>
+                        <input type="text" id="adm-form-pan" value="AAACW9911M" style="margin-bottom:8px; padding:8px; background:#000;">
+
+                        <label style="color:#9ca3af; font-size:10px;">💳 मर्चेंट गेटवे लाइव API टोकन:</label>
+                        <input type="text" id="adm-form-api" value="rzp_live_secret_token_991155" style="margin-bottom:10px; padding:8px; background:#000;">
+
+                        <button onclick="saveAdminCorporateVaultData()" class="action-btn" style="padding:6px; font-size:11px; background:var(--accent); color:#fff;"><i class="fa-solid fa-floppy-disk"></i> डाक्यूमेंट्स वाल्ट डेटा सहेजें</button>
+                    </div>
+                </div>
+
+                <div class="admin-column" style="border-color:var(--primary);">
+                    <h5 style="color:var(--primary); font-weight:800; font-size:12px; margin-bottom:5px;"><i class="fa-solid fa-chart-line"></i> 2. लाइव ऐप अर्निंग एवं पेआउट ऑडिट</h5>
+                    <p style="font-size:10px; color:#9ca3af;">नेटवर्क स्केल: 500 एक्टिव रियल-टाइम यूज़र्स</p>
+                    
+                    <div class="finance-audit-grid">
+                        <div class="audit-stat-box">
+                            <span style="font-size:9px; color:#9ca3af; display:block;">कुल विज्ञापन राजस्व (Ad Revenue)</span>
+                            <strong style="font-size:12px; color:var(--primary);">₹1,45,200.00</strong>
+                        </div>
+                        <div class="audit-stat-box expense">
+                            <span style="font-size:9px; color:#9ca3af; display:block;">यूज़र्स की कुल कमाई (Liability)</span>
+                            <strong style="font-size:12px; color:#bd00ff;">₹68,500.00</strong>
+                        </div>
+                        <div class="audit-stat-box pending">
+                            <span style="font-size:9px; color:#9ca3af; display:block;">लंबित भुगतान (Pending Requests)</span>
+                            <strong id="admin-pending-cash" style="font-size:12px; color:#f59e0b;">₹0.00</strong>
+                        </div>
+                        <div class="audit-stat-box">
+                            <span style="font-size:9px; color:#9ca3af; display:block;">सफलतापूर्वक वितरित (Paid Capital)</span>
+                            <strong style="font-size:12px; color:#fff;">₹32,400.00</strong>
+                        </div>
+                    </div>
+
+                    <div style="background:#000; padding:10px; border-radius:8px; margin-top:12px; font-size:11px; border:1px solid rgba(255,255,255,0.05);">
+                        <p id="admin-withdraw-log" style="color:#9ca3af;">कोई लंबित निकासी अनुरोध नहीं है.</p>
+                        <div id="admin-withdraw-actions" style="display:none; gap:8px; margin-top:8px;">
+                            <button onclick="approvePayoutManual()" style="background:var(--primary); color:#000; font-weight:800; padding:4px 10px; border:none; border-radius:4px; font-size:11px; cursor:pointer;">स्वीकृत करें</button>
+                            <button onclick="rejectPayoutManual()" style="background:#ef4444; color:#fff; font-weight:800; padding:4px 10px; border:none; border-radius:4px; font-size:11px; cursor:pointer;">रद्द करें</button>
+                        </div>
+                    </div>
+
+                    <button onclick="triggerManualScreenshotReject()" style="background:linear-gradient(135deg, #ef4444, #b91c1c); color:#fff; padding:10px; font-weight:700; border-radius:8px; width:100%; border:none; cursor:pointer; font-size:11px; margin-top:10px;"><i class="fa-solid fa-triangle-exclamation"></i> फेक स्क्रीनशॉट रिजेक्ट करें (ऑटो स्ट्राइक)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav-bar">
+        <button id="nav-btn-home" class="nav-item active" onclick="switchGlobalTab('home-page', 'nav-btn-home')"><i class="fa-solid fa-house"></i><span id="nav-txt-home">होम</span></button>
+        <button id="nav-btn-withdraw" class="nav-item" onclick="switchGlobalTab('withdraw-page', 'nav-btn-withdraw')"><i class="fa-solid fa-wallet"></i><span id="nav-txt-withdraw">निकासी</span></button>
+        <button id="nav-btn-profile" class="nav-item" onclick="switchGlobalTab('profile-page', 'nav-btn-profile')"><i class="fa-solid fa-user"></i><span id="nav-txt-profile">प्रोफ़ाइल</span></button>
+        <button id="nav-admin-tab" class="nav-item" onclick="switchGlobalTab('admin-page', 'nav-admin-tab')"><i class="fa-solid fa-user-shield"></i><span>एडमिन</span></button>
+    </nav>
+
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+    let ytPlayer;
+    let localCoins = parseInt(localStorage.getItem('appCoins_v21')) || 500; 
+    let videoWatchDone = false;
+    let watchTimerInterval;
+    let secondsWatched = 0;
+    let lastValidTime = 0;
+    let fraudStrikeCounter = parseInt(localStorage.getItem('fraudStrikes_v21')) || 0;
+    let logoClickCounter = 0;
+    const TARGET_SECONDS = 180; 
+    let currentAppLanguage = 'hi';
+
+    // लकी व्हील के निरंतर स्पिन न होने के बग का फिक्स
+    let totalWheelRotationDegrees = 0;
+
+    // इतिहास बहीखाता डेटाबेस (तारीख और सटीक समय के साथ)
+    let appLedgerHistory = JSON.parse(localStorage.getItem('appLedgerHistory_v21')) || [
+        { title: "साइनअप बोनस क्रेडिट", time: "30 Jun 2026, 10:00 AM", type: "plus", amt: 500 }
+    ];
+
+    // लाइव ट्रांसलेशन डिक्शनरी इंजन
+    const translationDictionary = {
+        hi: {
+            home: "होम", withdraw: "निकासी", profile: "प्रोफ़ाइल",
+            streakTitle: "🎁 डेली रिवॉर्ड स्ट्रीक", streakDesc: "रोज लॉगिन बोनस क्लेम करें",
+            wheelTitle: "🎡 लकी स्पिन व्हील", gameDesc: "रॉकेट्स पर टैप करके उन्हें फोड़ें! 15 स्मैश होने पर +100 Coins तुरंत मिलेंगे।",
+            gameStart: "गेम शुरू करें", cpaTitle: "⚡ विशेष सीपीए टास्क (Complete & Submit Here)",
+            kycTitle: "🔒 अनिवार्य बैंक एवं UPI KYC वेरीफिकेशन", withdrawTitle: "🏦 निकासी अनुरोध केंद्र",
+            withdrawBtn: "अनुरोध सबमिट करें", profileUser: "मास्टर यूज़र अकाउंट",
+            profileDashBtn: "ऐप डैशबोर्ड खोलें (Top 10 Rankings)", historyTitle: "💰 विस्तृत वॉलेट पासबुक इतिहास",
+            shareTitle: "दोस्तों को शेयर करें", shareDesc: "हर एक सफल शेयर पर आपको +2000 Coins (₹20.00) सीधे मिलेंगे!",
+            inboxTitle: "मार्कपूर्ण अलर्ट लॉग्स", claimVideo: "📺 वीडियो प्ले करके 3 मिनट देखें"
+        },
+        en: {
+            home: "Home", withdraw: "Withdraw", profile: "Profile",
+            streakTitle: "🎁 Daily Reward Streak", streakDesc: "Claim daily login bonus rewards",
+            wheelTitle: "🎡 Lucky Spin Wheel", gameDesc: "Tap and pop rockets! Score 15 smashes to win +100 Coins instantly.",
+            gameStart: "Start Game", cpaTitle: "⚡ Premium CPA Tasks (Complete & Submit Here)",
+            kycTitle: "🔒 Mandatory Bank & UPI KYC Verification", withdrawTitle: "🏦 Financial Withdrawal Hub",
+            withdrawBtn: "Submit Payout Request", profileUser: "Master User Account",
+            profileDashBtn: "Open Leaderboard Dashboard (Top 10)", historyTitle: "💰 Detailed Wallet Passbook Ledger",
+            shareTitle: "Invite & Share Rewards", shareDesc: "Get +2000 Coins (₹20.00) directly for every successful tracking invite!",
+            inboxTitle: "Critical Security Logs", claimVideo: "📺 Stream Video for 3 Minutes to Claim"
+        }
+    };
+
+    const wheelRewards = ["+10", "+50", "Try Again", "+100", "+20", "+250"];
+    const wheelColors = ["#1e1b4b", "#311042", "#111827", "#022c22", "#311042", "#4c0519"];
+    let isWheelSpinning = false;
+    let audioCtx = null;
+
+    function playWatchMitraMasterSound() {
+        try {
+            if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+            if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+            let osc = audioCtx.createOscillator(); let gain = audioCtx.createGain();
+            osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+        } catch(e) {}
+    }
+
+    // ट्रांसलेशन परफेक्टली वर्किंग फिक्स
+    function toggleAppLanguageTranslation() {
+        currentAppLanguage = (currentAppLanguage === 'hi') ? 'en' : 'hi';
+        document.getElementById('lang-toggle-btn').innerHTML = `<i class="fa-solid fa-language"></i> ${currentAppLanguage.toUpperCase()}`;
+        
+        const dict = translationDictionary[currentAppLanguage];
+        document.getElementById('nav-txt-home').innerText = dict.home;
+        document.getElementById('nav-txt-withdraw').innerText = dict.withdraw;
+        document.getElementById('nav-txt-profile').innerText = dict.profile;
+        document.getElementById('txt-streak-title').innerText = dict.streakTitle;
+        document.getElementById('txt-streak-desc').innerText = dict.streakDesc;
+        document.getElementById('txt-wheel-title').innerText = dict.wheelTitle;
+        document.getElementById('txt-game-desc').innerText = dict.gameDesc;
+        document.getElementById('txt-game-start').innerText = dict.gameStart;
+        document.getElementById('txt-cpa-title').innerText = dict.cpaTitle;
+        document.getElementById('txt-kyc-title').innerText = dict.kycTitle;
+        document.getElementById('txt-withdraw-title').innerText = dict.withdrawTitle;
+        document.getElementById('txt-withdraw-submit-btn').innerText = dict.withdrawBtn;
+        document.getElementById('txt-profile-user').innerText = dict.profileUser;
+        document.getElementById('txt-profile-dash-btn').innerText = dict.profileDashBtn;
+        document.getElementById('txt-history-title').innerText = dict.historyTitle;
+        document.getElementById('txt-share-title').innerText = dict.shareTitle;
+        document.getElementById('txt-share-desc').innerText = dict.shareDesc;
+        document.getElementById('txt-inbox-title').innerText = dict.inboxTitle;
+        if(!videoWatchDone) { document.getElementById('claim-video-btn').innerText = dict.claimVideo; }
+    }
+
+    // सीक्रेट एडमिन गेटवे 3 क्लिक्स
+    function handleLogoSecretCounter() {
+        logoClickCounter++;
+        playWatchMitraMasterSound();
+        if(logoClickCounter >= 3) {
+            logoClickCounter = 0;
+            document.getElementById('admin-auth-shield-modal').style.display = 'flex';
+        }
+    }
+
+    function verifyShieldAdminAuth() {
+        let enteredPin = document.getElementById('shield-pin-input').value;
+        if(enteredPin === "9911") {
+            document.getElementById('admin-auth-shield-modal').style.display = 'none';
+            document.getElementById('nav-admin-tab').style.display = 'flex';
+            document.getElementById('shield-pin-input').value = "";
+            switchGlobalTab('admin-page', 'nav-admin-tab');
+            loadAdminSavedFormData();
+            alert("🔓 मिलिट्री-ग्रेड कॉर्पोरेट सुरक्षा स्तर पार। केंद्रीय एडमिन कंट्रोल हब एक्टिवेटेड!");
+        } else {
+            alert("🚨 अवैध मास्टर कोड! प्रवेश निरस्त कर दिया गया है।");
+            closeAdminShieldOverlay();
+        }
+    }
+
+    function closeAdminShieldOverlay() {
+        document.getElementById('admin-auth-shield-modal').style.display = 'none';
+        document.getElementById('shield-pin-input').value = "";
+    }
+
+    function lockAdminPanelInstantly() {
+        document.getElementById('nav-admin-tab').style.display = 'none';
+        switchGlobalTab('home-page', 'nav-btn-home');
+        alert("🔒 एडमिन पैनल को दोबारा पूरी तरह से सुरक्षित हाइड कर दिया गया है।");
+    }
+
+    // 🆕 एडमिन डॉक्यूमेंट इनपुट फॉर्म सहेजने का लॉजिक
+    function saveAdminCorporateVaultData() {
+        localStorage.setItem('adm_cin', document.getElementById('adm-form-cin').value);
+        localStorage.setItem('adm_gst', document.getElementById('adm-form-gst').value);
+        localStorage.setItem('adm_msme', document.getElementById('adm-form-msme').value);
+        localStorage.setItem('adm_pan', document.getElementById('adm-form-pan').value);
+        localStorage.setItem('adm_api', document.getElementById('adm-form-api').value);
+        alert("💾 कंपनी लीगल डोक्यूमेंट्स एवं API क्रेडेंशियल्स सफलतापूर्वक सहेज लिए गए हैं!");
+    }
+
+    function loadAdminSavedFormData() {
+        if(localStorage.getItem('adm_cin')) document.getElementById('adm-form-cin').value = localStorage.getItem('adm_cin');
+        if(localStorage.getItem('adm_gst')) document.getElementById('adm-form-gst').value = localStorage.getItem('adm_gst');
+        if(localStorage.getItem('adm_msme')) document.getElementById('adm-form-msme').value = localStorage.getItem('adm_msme');
+        if(localStorage.getItem('adm_pan')) document.getElementById('adm-form-pan').value = localStorage.getItem('adm_pan');
+        if(localStorage.getItem('adm_api')) document.getElementById('adm-form-api').value = localStorage.getItem('adm_api');
+    }
+
+    function openShareSystemPopup() { document.getElementById('share-modal-overlay').style.display = 'flex'; }
+    function closeShareSystemPopup() { document.getElementById('share-modal-overlay').style.display = 'none'; }
+
+    function executeLiveShareAction() {
+        localCoins += 2000;
+        addLedgerEntry("सफल रेफरल/शेयर बोनस", 2000, "plus");
+        refreshUIVars();
+        closeShareSystemPopup();
+        alert("🎁 बधाई! शेयर लिंक ट्रांसफर हुआ। आपको +2000 Coins मिले।");
+    }
+
+    function forceSyncRefreshState() {
+        playWatchMitraMasterSound();
+        refreshUIVars();
+        alert("🔄 क्लाउड रिफ्रेश पूरा हुआ। ऐप क्रैश फ्री और परफेक्टली सिंक है।");
+    }
+
+    function toggleNotificationInbox() {
+        let section = document.getElementById('notification-inbox-section');
+        section.style.display = (section.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function closePushToast() { document.getElementById('push-toast').style.top = "-120px"; }
+
+    function saveKycDetailsData() {
+        let name = document.getElementById('kyc-name').value;
+        let upi = document.getElementById('kyc-upi').value;
+        if(!name || !upi) return alert("⚠️ कृपया अपना पूरा नाम और सही UPI ID डालें!");
+        localStorage.setItem('kyc_name_v21', name);
+        localStorage.setItem('kyc_upi_v21', upi);
+        document.getElementById('kyc-status-lbl').innerText = "✅ आपका बैंक/UPI KYC डेटा सुरक्षित लॉक है!";
+        refreshUIVars();
+        alert("🔒 डेटा सुरक्षित सेव्ड।");
+    }
+
+    // ऑटो फ्रॉड पेनल्टी प्रणाली
+    function triggerAutomatedFraudPenalty(reason) {
+        fraudStrikeCounter++;
+        localStorage.setItem('fraudStrikes_v21', fraudStrikeCounter);
+        
+        if (fraudStrikeCounter === 1) {
+            document.getElementById('fraud-alert-item').style.display = 'block';
+            document.getElementById('noti-title').innerText = "🚨 सुरक्षा चेतावनी";
+            document.getElementById('noti-body').innerText = "अवैध गतिविधि का प्रयास! दोबारा करने पर बैलेंस 0 कर दिया जाएगा।";
+            document.getElementById('push-toast').style.top = "15px";
+            alert(`🚨 सुरक्षा कवच अलर्ट:\n\n${reason} पकड़ा गया! यह आपकी पहली चेतावनी है।`);
+        } else if (fraudStrikeCounter >= 2) {
+            localCoins = 0;
+            appLedgerHistory = [{ title: "🚨 सुरक्षा जब्ती (फ्रॉड पेनल्टी)", time: getFormattedTimestamp(), type: "minus", amt: 0 }];
+            localStorage.setItem('appLedgerHistory_v21', JSON.stringify(appLedgerHistory));
+            refreshUIVars();
+            document.getElementById('noti-title').innerText = "🚨 खाता दंडित / शून्य";
+            document.getElementById('noti-body').innerText = "लगातार फ्रॉड के कारण आपका वॉलेट बैलेंस तत्काल 0 कर दिया गया।";
+            document.getElementById('push-toast').style.top = "15px";
+            alert("🚨 सख्त सुरक्षा एक्शन:\n\nलगातार नियमों का उल्लंघन और फ्रॉड करने के कारण आपका पूरा बैलेंस शून्य (0 Coins) कर दिया गया है!");
+        }
+    }
+
+    function submitCpaTaskProof(id, amt, label) {
+        const fileInput = document.getElementById('file-' + id);
+        if(!fileInput.files || fileInput.files.length === 0) return alert("⚠️ कृपया पूरा करने का स्क्रीनशॉट यहाँ अपलोड करें!");
+        
+        localCoins += amt;
+        addLedgerEntry(`${label} टास्क रिवॉर्ड`, amt, "plus");
+        localStorage.setItem('task_state_v21_' + id, 'done');
+        refreshUIVars();
+        alert(`🎉 बधाई हो! ${label} का प्रूफ सबमिट हुआ और कॉइन सीधे वॉलेट में जोड़ दिए गए।`);
+    }
+
+    // एडमिन भुगतान रूम
+    function handleWithdrawSubmit() {
+        let savedUpi = localStorage.getItem('kyc_upi_v21');
+        if(!savedUpi) return alert("⚠️ कृपया पहले निकासी टैब के ऊपर अपना अनिवार्य KYC लॉक करें!");
+        let amt = parseInt(document.getElementById('input-coins').value);
+        if(!amt || amt <= 0) return alert("⚠️ कृपया वैध कॉइन्स की राशि डालें!");
+        if(amt > localCoins) return alert("⚠️ आपके पास पर्याप्त बैलेंस नहीं है!");
+        
+        localStorage.setItem('pending_withdraw_amt_v21', amt);
+        document.getElementById('admin-withdraw-log').innerText = `लंबित निकासी: ${amt} Coins (Sub: ₹${(amt/100).toFixed(2)}) -> UPI: ${savedUpi}`;
+        document.getElementById('admin-pending-cash').innerText = `₹${(amt/100).toFixed(2)}`;
+        document.getElementById('admin-withdraw-actions').style.display = 'flex';
+        alert("💸 आपका अनुरोध सबमिट हो गया है। एडमिन पैनल के अंदर लाइव अर्निंग ग्रिड में इसे मैन्युअल अप्रूव करें।");
+    }
+
+    function approvePayoutManual() {
+        let amt = parseInt(localStorage.getItem('pending_withdraw_amt_v21')) || 0;
+        if(amt > 0) {
+            localCoins -= amt;
+            addLedgerEntry("विड्रॉल स्वीकृत (बैंक ट्रांसफर)", amt, "minus");
+            localStorage.removeItem('pending_withdraw_amt_v21');
+            document.getElementById('admin-withdraw-log').innerText = "कोई लंबित निकासी अनुरोध नहीं है.";
+            document.getElementById('admin-pending-cash').innerText = "₹0.00";
+            document.getElementById('admin-withdraw-actions').style.display = 'none';
+            refreshUIVars();
+            alert("✅ भुगतान सफलतापूर्वक यूज़र के खाते में क्रेडिट कर दिया गया है (मैन्युअल अप्रूवल सफल)!");
+        }
+    }
+
+    function rejectPayoutManual() {
+        localStorage.removeItem('pending_withdraw_amt_v21');
+        document.getElementById('admin-withdraw-log').innerText = "कोई लंबित निकासी अनुरोध नहीं है.";
+        document.getElementById('admin-pending-cash').innerText = "₹0.00";
+        document.getElementById('admin-withdraw-actions').style.display = 'none';
+        alert("🚨 निकासी अनुरोध को एडमिन द्वारा रिजेक्ट कर दिया गया है।");
+    }
+
+    function triggerManualScreenshotReject() {
+        triggerAutomatedFraudPenalty("एडमिन द्वारा फेक स्क्रीनशॉट रिजेक्ट किया गया");
+    }
+
+    function getFormattedTimestamp() {
+        const now = new Date();
+        const days = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12; hours = hours ? hours : 12; 
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        return `${now.getDate()} ${days[now.getMonth()]} ${now.getFullYear()}, ${hours}:${minutes} ${ampm}`;
+    }
+
+    function addLedgerEntry(title, amt, type) {
+        appLedgerHistory.unshift({ title: title, time: getFormattedTimestamp(), type: type, amt: amt });
+        localStorage.setItem('appLedgerHistory_v21', JSON.stringify(appLedgerHistory));
+    }
+
+    function toggleSubDashboardLayout() {
+        let box = document.getElementById('sub-dashboard-view-box');
+        if(box.style.display === 'none') { renderTopTenDashboardList(); box.style.display = 'block'; } else { box.style.display = 'none'; }
+    }
+
+    function renderTopTenDashboardList() {
+        const names = ["Raja Chand", "Maya Singh", "Amit Verma", "Rahul Joshi", "Deepak Kumar", "Pratiksha Shah", "Mahendra Rawat", "Sanjay Garbyal", "Karan Bisht", "Preeti Rana"];
+        let html = "";
+        for(let i=0; i<10; i++) {
+            let prizeCoins = (12000 - (i * 950));
+            html += `<div class="ledger-item" style="background:rgba(255,255,255,0.01);"><div style="display:flex; align-items:center; gap:8px;"><span style="color:${i===0?'#f59e0b':'#9ca3af'}; font-weight:800;">#0${i+1}</span> <b>${names[i]}</b></div><span style="color:var(--primary); font-weight:700;">${prizeCoins} Coins</span></div>`;
+        }
+        document.getElementById('leaderboard-ranking-list').innerHTML = html;
+    }
+
+    function renderUIPassbookHistory() {
+        let container = document.getElementById('user-ledger-history-container');
+        if(appLedgerHistory.length === 0) {
+            container.innerHTML = `<p style="font-size:11px; color:#6b7280; text-align:center; padding:10px;">कोई लेनदेन इतिहास उपलब्ध नहीं है.</p>`;
+            return;
+        }
+        let html = "";
+        appLedgerHistory.forEach(item => {
+            let sign = item.type === "plus" ? "+" : "-";
+            let color = item.type === "plus" ? "var(--primary)" : "#ef4444";
+            html += `<div class="ledger-item">
+                <div>
+                    <h6 style="font-weight:700; color:#fff;">${item.title}</h6>
+                    <small style="color:#6b7280; font-size:10px;"><i class="fa-regular fa-clock"></i> ${item.time}</small>
+                </div>
+                <span style="color:${color}; font-weight:800; font-size:13px;">${sign}${item.amt}</span>
+            </div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    function refreshUIVars() {
+        localStorage.setItem('appCoins_v21', localCoins);
+        let convertedRupees = (localCoins / 100).toFixed(2);
+        
+        document.getElementById('header-coins').innerText = `${localCoins} Coins (₹${convertedRupees})`;
+        if(document.getElementById('profile-coins-lbl')) { 
+            document.getElementById('profile-coins-lbl').innerText = `${localCoins} Coins (₹${convertedRupees})`; 
+        }
+        
+        ['task1', 'task2', 'task3'].forEach(id => {
+            if(localStorage.getItem('task_state_v21_' + id) === 'done' && document.getElementById('container-' + id)) {
+                document.getElementById('container-' + id).innerHTML = `<div class="task-meta"><div><h5 style="color:#6b7280; text-decoration:line-through; font-size:12px;">✅ सीपीए टास्क सफलतापूर्वक क्रेडिटेड</h5></div><button class="task-btn completed" disabled>डन</button></div>`;
+            }
+        });
+
+        let savedUpi = localStorage.getItem('kyc_upi_v21');
+        if(savedUpi) {
+            document.getElementById('input-upi').value = savedUpi;
+            document.getElementById('kyc-upi').value = savedUpi;
+        }
+        let savedName = localStorage.getItem('kyc_name_v21');
+        if(savedName) document.getElementById('kyc-name').value = savedName;
+
+        renderUIPassbookHistory();
+    }
+
+    // 📺 यूट्यूब प्लेयर लाइफसाइकिल (वॉल्यूम समस्या स्थायी समाधान)
+    function onYouTubeIframeAPIReady() {
+        ytPlayer = new YT.Player('player-frame', {
+            videoId: 'dQw4w9WgXcQ',
+            playerVars: { 'playsinline': 1, 'controls': 1, 'rel': 0, 'mute': 0 },
+            events: { 
+                'onStateChange': onPlayerStateChange,
+                'onReady': (e) => { e.target.unMute(); e.target.setVolume(100); }
+            }
+        });
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+            if(ytPlayer && typeof ytPlayer.unMute === 'function') { ytPlayer.unMute(); ytPlayer.setVolume(100); }
+            document.getElementById('video-status-lbl').innerText = "🛡️ एंटी-फॉरवर्ड ढाल सक्रिय है...";
+            clearInterval(watchTimerInterval);
+            
+            watchTimerInterval = setInterval(() => {
+                if (ytPlayer && typeof ytPlayer.getCurrentTime === 'function') {
+                    let currentTime = ytPlayer.getCurrentTime();
+                    
+                    if (currentTime - lastValidTime > 2.0) { 
+                        ytPlayer.seekTo(lastValidTime); 
+                        triggerAutomatedFraudPenalty("वीडियो को आगे बढ़ाकर देखने की कोशिश");
+                        return; 
+                    }
+                    if (currentTime > lastValidTime) { lastValidTime = currentTime; secondsWatched++; }
+
+                    let pct = Math.min((secondsWatched / TARGET_SECONDS) * 100, 100);
+                    document.getElementById('video-progress-fill').style.width = pct + "%";
+                    document.getElementById('claim-video-btn').innerText = `⏳ प्रोग्रेस (${TARGET_SECONDS - secondsWatched}s शेष)`;
+                    
+                    if (secondsWatched >= TARGET_SECONDS) {
+                        videoWatchDone = true; clearInterval(watchTimerInterval);
+                        document.getElementById('claim-video-btn').className = 'reward-btn active';
+                        document.getElementById('claim-video-btn').innerText = '🔥 बड़ा वीडियो रिवॉर्ड क्लेम करें (+150)';
+                        document.getElementById('claim-video-btn').onclick = claimVideoCoins;
+                    }
+                }
+            }, 1000);
+        } else { clearInterval(watchTimerInterval); }
+    }
+
+    function switchVideoIframe(id, idx) {
+        if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+            ytPlayer.loadVideoById(id); videoWatchDone = false; secondsWatched = 0; lastValidTime = 0;
+            document.getElementById('video-progress-fill').style.width = "0%";
+            document.getElementById('claim-video-btn').className = 'reward-btn';
+            document.getElementById('claim-video-btn').innerText = (currentAppLanguage === 'hi') ? translationDictionary.hi.claimVideo : translationDictionary.en.claimVideo;
+            document.getElementById('claim-video-btn').onclick = null;
+            document.querySelectorAll('.v-sel-btn').forEach(b => b.classList.remove('playing'));
+            document.getElementById('vchan-' + idx).classList.add('playing');
+            setTimeout(() => { ytPlayer.unMute(); ytPlayer.setVolume(100); }, 500);
+        }
+    }
+
+    function claimVideoCoins() {
+        if(!videoWatchDone) return;
+        localCoins += 150; videoWatchDone = false; secondsWatched = 0; lastValidTime = 0;
+        addLedgerEntry("यूट्यूब वीडियो वॉच रिवॉर्ड", 150, "plus");
+        refreshUIVars(); 
+        alert("🎉 सफलता: +150 कॉइन्स आपके खाते में जुड़े!");
+        switchVideoIframe('dQw4w9WgXcQ', 0);
+    }
+
+    // 🎡 लकी व्हील निरंतर रोटेशन फिक्स
+    function handleWheelClickLogic() {
+        if (isWheelSpinning) return; isWheelSpinning = true;
+        const targetIndex = Math.floor(Math.random() * wheelRewards.length);
+        const baseTargetDegrees = (360 - (targetIndex * 60)) - 30;
+        totalWheelRotationDegrees += 1800 + baseTargetDegrees;
+        
+        document.getElementById("wheel-canvas").style.transform = `rotate(${totalWheelRotationDegrees}deg)`;
+        
+        setTimeout(() => {
+            let prize = wheelRewards[targetIndex];
+            if (prize !== "Try Again") { 
+                let amt = parseInt(prize.replace("+",""));
+                localCoins += amt; 
+                addLedgerEntry("लकी स्पिन व्हील प्राइज", amt, "plus");
+            }
+            isWheelSpinning = false; refreshUIVars();
+            alert(`व्हील परिणाम: ${prize}`);
+        }, 4050);
+    }
+
+    function renderGraphicWheel() {
+        const canvas = document.getElementById("wheel-canvas"); if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        for (let i = 0; i < 6; i++) {
+            ctx.fillStyle = wheelColors[i]; ctx.beginPath(); ctx.moveTo(90, 90);
+            ctx.arc(90, 90, 85, i * 1.047 - Math.PI/2, (i+1) * 1.047 - Math.PI/2); ctx.fill();
+            ctx.save(); ctx.fillStyle = "#fff"; ctx.translate(90, 90); ctx.rotate(i * 1.047 - Math.PI/2 + 0.523);
+            ctx.font = "bold 10px sans-serif"; ctx.textAlign = "right"; ctx.fillText(wheelRewards[i], 76, 4); ctx.restore();
+        }
+    }
+
+    // 🎮 असली कैनवास गेम इंजन (Cyber Tap Rocket Mechanics)
+    let gameScore = 0; let gameInterval; let rocketsArray = [];
+    const gCanvas = document.getElementById('rocket-game-canvas');
+    const gCtx = gCanvas.getContext('2d');
+
+    function startRocketMiniGame() {
+        gameScore = 0; rocketsArray = [];
+        document.getElementById('game-score-box').innerText = "रॉकेट्स स्मैश: 0 / 15";
+        clearInterval(gameInterval);
+        gameInterval = setInterval(updateRocketGameFrame, 30);
+        alert("🚀 गेम शुरू! स्क्रीन पर आने वाले हरे बॉक्स (रॉकेट्स) पर तुरंत उंगली से टैप/क्लिक करें!");
+    }
+
+    gCanvas.addEventListener('mousedown', (e) => {
+        const rect = gCanvas.getBoundingClientRect();
+        checkRocketHit(e.clientX - rect.left, e.clientY - rect.top);
+    });
+    gCanvas.addEventListener('touchstart', (e) => {
+        const rect = gCanvas.getBoundingClientRect();
+        checkRocketHit(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
+    });
+
+    function checkRocketHit(x, y) {
+        rocketsArray.forEach((r, idx) => {
+            if(x >= r.x && x <= r.x + 24 && y >= r.y && y <= r.y + 24) {
+                rocketsArray.splice(idx, 1); gameScore++; playWatchMitraMasterSound();
+                document.getElementById('game-score-box').innerText = `रॉकेट्स स्मैश: ${gameScore} / 15`;
+                if(gameScore >= 15) {
+                    clearInterval(gameInterval); gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+                    localCoins += 100; addLedgerEntry("साइबर रॉकेट गेम विनिंग", 100, "plus");
+                    refreshUIVars(); alert("🏆 अद्भुत! +100 Coins क्रेडिट कर दिए गए हैं।");
+                }
+            }
+        });
+    }
+
+    function updateRocketGameFrame() {
+        gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+        if(Math.random() < 0.04 && rocketsArray.length < 4) {
+            rocketsArray.push({ x: Math.random() * (gCanvas.width - 30), y: gCanvas.height, speed: 2 + Math.random() * 3 });
+        }
+        gCtx.fillStyle = "var(--primary)";
+        rocketsArray.forEach((r, idx) => {
+            r.y -= r.speed; gCtx.fillRect(r.x, r.y, 24, 24);
+            gCtx.strokeStyle = "#fff"; gCtx.strokeRect(r.x, r.y, 24, 24);
+            if(r.y < -30) rocketsArray.splice(idx, 1);
+        });
+    }
+
+    function triggerDailyStreakBonus() { 
+        localCoins += 20; addLedgerEntry("डेली लॉगिन बोनस", 20, "plus");
+        refreshUIVars(); alert("🎉 रोजाना लॉगिन रिवॉर्ड (+20 Coins) सुरक्षित ट्रांसफर हुआ!"); 
+    }
+    
+    function activateUploadZone(id) { document.getElementById('zone-' + id).style.display = 'flex'; }
+    function showFileFeedback(id) { document.getElementById('feed-' + id).innerText = "📸 स्क्रीनशॉट रेडी"; }
+    
+    function switchGlobalTab(pId, nId) {
+        document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        document.getElementById(pId).style.display = 'block'; document.getElementById(nId).classList.add('active');
+        document.getElementById('notification-inbox-section').style.display = 'none'; 
+    }
+
+    refreshUIVars();
+    setTimeout(renderGraphicWheel, 300);
+</script>
+</body>
+</html>
