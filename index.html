@@ -3,146 +3,670 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WatchMitra Enterprise Shield Master v21.0</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;600;700;800&display=swap" rel="stylesheet">
+    <title>WatchMitra Ultimate Shielded Enterprise Master v22.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        /* 🎨 Enterprise Master Premium Cyber Theme */
+        /* 🎨 प्रीमियम साइबर-फ़िनटेक थीम (Groww & Crypto Inspired) */
         :root { 
             --primary: #00ff66; 
             --accent: #bd00ff;  
-            --dark: #030712;    
-            --card-bg: rgba(15, 23, 42, 0.65); 
-            --neon-glow: 0 0 15px rgba(0, 255, 102, 0.4);
-            --purple-glow: 0 0 15px rgba(189, 0, 255, 0.4);
+            --dark-bg: #030712;    
+            --card-surface: rgba(15, 23, 42, 0.65); 
+            --neon-glow-green: 0 0 15px rgba(0, 255, 102, 0.4);
+            --neon-glow-purple: 0 0 15px rgba(189, 0, 255, 0.4);
+            --crypto-cyan: #00e5ff;
+            --text-muted: #9ca3af;
         }
         
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans', sans-serif; -webkit-user-select: none; user-select: none; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            -webkit-user-select: none; 
+            user-select: none; 
+        }
         
         body { 
-            background: #000; 
+            background: #000000; 
             display: flex; 
             justify-content: center; 
             align-items: flex-start; 
             min-height: 100vh; 
+            overflow-x: hidden;
         }
 
-        /* बॉक्स आधारित मोबाइल कंटेनर संरचना */
+        /* ऐप मेन फ्रेम */
         .app-container {
             width: 100%;
             max-width: 480px; 
-            background: var(--dark);
-            color: #fff;
+            background: var(--dark-bg);
+            color: #ffffff;
             min-height: 100vh;
-            padding-bottom: 95px;
+            padding-bottom: 100px;
             position: relative;
-            box-shadow: 0 0 40px rgba(0,0,0,0.95);
+            box-shadow: 0 0 50px rgba(0,0,0,0.95);
             border-left: 1px solid rgba(255,255,255,0.05);
             border-right: 1px solid rgba(255,255,255,0.05);
-            background-image: radial-gradient(circle at 50% 20%, rgba(189,0,255,0.06) 0%, transparent 50%);
+            background-image: radial-gradient(circle at 50% 15%, rgba(189,0,255,0.07) 0%, transparent 60%);
         }
         
-        .header { background: rgba(3, 7, 18, 0.9); backdrop-filter: blur(12px); padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top:0; z-index:99; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .header-actions { display: flex; align-items: center; gap: 8px; }
+        /* हेडर लेआउट */
+        .header { 
+            background: rgba(3, 7, 18, 0.9); 
+            backdrop-filter: blur(15px); 
+            padding: 16px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky; 
+            top: 0; 
+            z-index: 999; 
+            border-bottom: 1px solid rgba(255,255,255,0.06); 
+        }
         
-        .secret-logo { font-size: 19px; font-weight: 800; cursor: pointer; letter-spacing: -0.5px; }
+        .header-actions { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
         
-        .refresh-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.3s ease; }
-        .refresh-btn:hover { transform: rotate(180deg); color: var(--primary); }
-
-        .lang-badge { font-size: 11px; background: rgba(0, 255, 102, 0.15); border: 1px solid var(--primary); padding: 5px 10px; border-radius: 20px; color: #fff; font-weight: 700; cursor: pointer; box-shadow: var(--neon-glow); }
-
-        .bell-container { position: relative; cursor: pointer; font-size: 20px; padding: 5px; }
-        .bell-badge { position: absolute; top: 0px; right: 0px; background: #ef4444; color: #fff; font-size: 9px; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; box-shadow: 0 0 8px #ef4444; }
-
-        .share-header-btn { background: rgba(189, 0, 255, 0.15); border: 1px solid var(--accent); color: #fff; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; animation: pulseGlow 2s infinite; }
-
-        .balance-pill { background: rgba(0, 255, 102, 0.06); padding: 6px 12px; border-radius: 20px; font-weight: 800; color: var(--primary); font-size: 13px; border: 1px solid rgba(0, 255, 102, 0.3); box-shadow: var(--neon-glow); display: flex; align-items: center; gap: 6px; }
+        .secret-logo { 
+            font-size: 20px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            letter-spacing: -0.5px; 
+        }
         
-        .page { display: none; padding: 20px; }
-        .page.active { display: block; }
+        .refresh-btn { 
+            background: rgba(255, 255, 255, 0.04); 
+            border: 1px solid rgba(255,255,255,0.08); 
+            color: #ffffff; 
+            width: 36px; 
+            height: 36px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            transition: transform 0.4s ease, color 0.3s; 
+        }
+        .refresh-btn:hover { 
+            transform: rotate(180deg); 
+            color: var(--primary); 
+            border-color: var(--primary);
+        }
 
-        .card { background: var(--card-bg); padding: 20px; border-radius: 16px; margin-bottom: 18px; border: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(8px); }
+        .lang-badge { 
+            font-size: 12px; 
+            background: rgba(0, 255, 102, 0.12); 
+            border: 1px solid var(--primary); 
+            padding: 6px 12px; 
+            border-radius: 20px; 
+            color: #ffffff; 
+            font-weight: 700; 
+            cursor: pointer; 
+            box-shadow: var(--neon-glow-green); 
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .bell-container { 
+            position: relative; 
+            cursor: pointer; 
+            font-size: 20px; 
+            padding: 6px; 
+        }
+        .bell-badge { 
+            position: absolute; 
+            top: 1px; 
+            right: 1px; 
+            background: #ef4444; 
+            color: #ffffff; 
+            font-size: 9px; 
+            width: 16px; 
+            height: 16px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 800; 
+            box-shadow: 0 0 8px #ef4444; 
+        }
+
+        .share-header-btn { 
+            background: rgba(189, 0, 255, 0.12); 
+            border: 1px solid var(--accent); 
+            color: #ffffff; 
+            width: 36px; 
+            height: 36px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            box-shadow: var(--neon-glow-purple);
+        }
+
+        .balance-pill { 
+            background: rgba(0, 255, 102, 0.05); 
+            padding: 6px 14px; 
+            border-radius: 24px; 
+            font-weight: 800; 
+            color: var(--primary); 
+            font-size: 13px; 
+            border: 1px solid rgba(0, 255, 102, 0.25); 
+            box-shadow: var(--neon-glow-green); 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+        }
         
-        .notification-inbox { display: none; background: rgba(15, 23, 42, 0.98); border: 1px solid var(--accent); border-radius: 16px; padding: 15px; margin-bottom: 15px; box-shadow: var(--purple-glow); }
-        .noti-item { padding: 10px; border-radius: 8px; margin-bottom: 8px; font-size: 12px; border-left: 4px solid #fff; background: rgba(255,255,255,0.02); }
-        .noti-success { border-left-color: var(--primary); background: rgba(0,255,102,0.05); }
-        .noti-failed { border-left-color: #ef4444; background: rgba(239,68,68,0.05); }
+        /* पेज व्यू कंट्रोलर्स */
+        .page { 
+            display: none; 
+            padding: 20px; 
+            animation: fadeInPage 0.3s ease-in-out;
+        }
+        .page.active { 
+            display: block; 
+        }
 
-        #push-toast { position: fixed; top: -120px; left: 5%; width: 90%; background: linear-gradient(135deg, #1e1b4b, #030712); border: 2px solid var(--accent); box-shadow: var(--purple-glow); padding: 15px; border-radius: 14px; z-index: 99999; display: flex; align-items: center; gap: 12px; transition: top 0.4s ease; }
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* तिरछा प्रीमियम डेली स्ट्रीक डिज़ाइन */
-        .premium-streak-container { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.02); padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(189, 0, 255, 0.2); }
-        .streak-row-flow { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 4px 0; width: 100%; }
+        /* कार्ड लेआउट्स */
+        .card { 
+            background: var(--card-surface); 
+            padding: 20px; 
+            border-radius: 16px; 
+            margin-bottom: 18px; 
+            border: 1px solid rgba(255,255,255,0.06); 
+            backdrop-filter: blur(10px); 
+        }
+        
+        /* अलर्ट और इनबॉक्स */
+        .notification-inbox { 
+            background: rgba(15, 23, 42, 0.98); 
+            border: 1px solid var(--accent); 
+            border-radius: 16px; 
+            padding: 16px; 
+            margin-bottom: 15px; 
+            box-shadow: var(--neon-glow-purple); 
+        }
+        .noti-item { 
+            padding: 12px; 
+            border-radius: 10px; 
+            margin-bottom: 10px; 
+            font-size: 12px; 
+            border-left: 4px solid #ffffff; 
+            background: rgba(255,255,255,0.02); 
+            line-height: 1.5;
+        }
+        .noti-success { 
+            border-left-color: var(--primary); 
+            background: rgba(0,255,102,0.04); 
+        }
+        .noti-failed { 
+            border-left-color: #ef4444; 
+            background: rgba(239,68,68,0.04); 
+        }
+
+        /* 🚨 ३-स्ट्राइक रियल-टाइम पुश टोस्ट */
+        #push-toast { 
+            position: fixed; 
+            top: -150px; 
+            left: 5%; 
+            width: 90%; 
+            background: linear-gradient(135deg, #1e1b4b, #030712); 
+            border: 2px solid #ef4444; 
+            box-shadow: 0 0 25px rgba(239,68,68,0.4); 
+            padding: 16px; 
+            border-radius: 14px; 
+            z-index: 999999; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+
+        /* डेली बोनस लूप */
+        .premium-streak-container { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: rgba(0, 0, 0, 0.3); 
+            padding: 12px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(189, 0, 255, 0.15); 
+        }
+        .streak-row-flow { 
+            display: flex; 
+            gap: 8px; 
+            overflow-x: auto; 
+            scrollbar-width: none; 
+            padding: 4px 0; 
+            width: 100%; 
+        }
         .streak-row-flow::-webkit-scrollbar { display: none; }
-        .slanted-streak-badge { background: linear-gradient(135deg, #1e1b4b, #3b0764); padding: 6px 12px; border-radius: 6px; transform: skewX(-12deg); border: 1px solid rgba(189, 0, 255, 0.3); text-align: center; min-width: 58px; }
-        .slanted-streak-badge.completed { background: linear-gradient(135deg, #047857, #065f46); border-color: var(--primary); box-shadow: var(--neon-glow); }
-        .slanted-streak-badge span { display: block; transform: skewX(12deg); font-size: 10px; font-weight: 800; color: #fff; }
+        
+        .slanted-streak-badge { 
+            background: linear-gradient(135deg, #1e1b4b, #111827); 
+            padding: 8px 12px; 
+            border-radius: 8px; 
+            transform: skewX(-10deg); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            text-align: center; 
+            min-width: 62px; 
+            transition: all 0.3s;
+        }
+        .slanted-streak-badge.completed { 
+            background: linear-gradient(135deg, #047857, #065f46); 
+            border-color: var(--primary); 
+            box-shadow: var(--neon-glow-green); 
+        }
+        .slanted-streak-badge span { 
+            display: block; 
+            transform: skewX(10deg); 
+            font-size: 11px; 
+            font-weight: 800; 
+            color: #ffffff; 
+        }
 
-        /* वीडियो प्लेयर्स की सेटिंग्स */
-        .video-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 16px 16px 0 0; overflow: hidden; border: 1px solid rgba(0, 255, 102, 0.2); border-bottom: none; position: relative; }
+        /* मीडिया प्लेयर ढांचा */
+        .video-box { 
+            width: 100%; 
+            aspect-ratio: 16/9; 
+            background: #000000; 
+            border-radius: 16px 16px 0 0; 
+            overflow: hidden; 
+            border: 1px solid rgba(0, 255, 102, 0.2); 
+            border-bottom: none; 
+            position: relative; 
+        }
         #player-frame { width: 100%; height: 100%; border: none; }
-        .progress-container { width: 100%; height: 6px; background: rgba(255,255,255,0.05); margin-bottom: 12px; border-radius: 0 0 16px 16px; overflow: hidden; border: 1px solid rgba(0, 255, 102, 0.2); border-top: none; }
-        .progress-bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, var(--primary), #00cb52); transition: width 0.3s linear; }
+        
+        .progress-container { 
+            width: 100%; 
+            height: 6px; 
+            background: rgba(255,255,255,0.05); 
+            margin-bottom: 14px; 
+            border-radius: 0 0 16px 16px; 
+            overflow: hidden; 
+            border: 1px solid rgba(0, 255, 102, 0.2); 
+            border-top: none; 
+        }
+        .progress-bar-fill { 
+            width: 0%; 
+            height: 100%; 
+            background: linear-gradient(90deg, var(--primary), #00cb52); 
+            transition: width 0.2s linear; 
+        }
 
-        .reward-btn { width: 100%; padding: 15px; border-radius: 12px; border: none; background: #1f2937; color: #4b5563; font-weight: 700; font-size: 15px; cursor: not-allowed; text-align: center; }
-        .reward-btn.active { background: linear-gradient(135deg, #00ff66, #00cb52); color: #000; cursor: pointer; box-shadow: var(--neon-glow); font-weight: 800; }
+        .reward-btn { 
+            width: 100%; 
+            padding: 16px; 
+            border-radius: 14px; 
+            border: none; 
+            background: #1f2937; 
+            color: #4b5563; 
+            font-weight: 700; 
+            font-size: 15px; 
+            cursor: not-allowed; 
+            text-align: center; 
+            transition: all 0.3s;
+        }
+        .reward-btn.active { 
+            background: linear-gradient(135deg, #00ff66, #00cb52); 
+            color: #000000; 
+            cursor: pointer; 
+            box-shadow: var(--neon-glow-green); 
+            font-weight: 800; 
+        }
 
-        /* टास्क रो स्टाइलिंग - फोटो/कैमरा आइकन अलाइनमेंट बग फिक्स */
-        .task-row { display: flex; flex-direction: column; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 10px; }
-        .task-meta { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .task-btn { background: var(--primary); color: #000; padding: 8px 16px; border-radius: 20px; border: none; font-size: 12px; font-weight: 800; cursor: pointer; text-decoration: none; text-align: center; }
-        .task-btn.completed { background: rgba(255,255,255,0.05) !important; color: #6b7280 !important; cursor: not-allowed; border: 1px solid rgba(255,255,255,0.05); }
+        /* सीपीए कोर रो */
+        .task-row { 
+            display: flex; 
+            flex-direction: column; 
+            padding: 16px 0; 
+            border-bottom: 1px solid rgba(255,255,255,0.06); 
+            gap: 12px; 
+        }
+        .task-meta { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            width: 100%; 
+        }
+        .task-btn { 
+            background: var(--primary); 
+            color: #000000; 
+            padding: 8px 18px; 
+            border-radius: 20px; 
+            border: none; 
+            font-size: 12px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            text-decoration: none; 
+            text-align: center; 
+            box-shadow: var(--neon-glow-green);
+        }
+        .task-btn.completed { 
+            background: rgba(255,255,255,0.05) !important; 
+            color: #6b7280 !important; 
+            cursor: not-allowed; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            box-shadow: none;
+        }
 
-        /* ज़ोन अलाइनमेंट क्लीनअप */
-        .upload-zone { display: flex; gap: 10px; align-items: center; background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; border: 1px dashed var(--accent); margin-top: 5px; width: 100%; justify-content: space-between; }
-        .file-lbl { background: var(--accent); color: #fff; font-size: 11px; padding: 6px 12px; border-radius: 6px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
-        .submit-proof-btn { background: #fff; color: #000; font-size: 11px; padding: 6px 12px; border-radius: 6px; font-weight: 800; border: none; cursor: pointer; }
+        .upload-zone { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center; 
+            background: rgba(0,0,0,0.5); 
+            padding: 12px; 
+            border-radius: 10px; 
+            border: 1px dashed var(--accent); 
+            margin-top: 4px; 
+            width: 100%; 
+            justify-content: space-between; 
+        }
+        .file-lbl { 
+            background: var(--accent); 
+            color: #ffffff; 
+            font-size: 11px; 
+            padding: 7px 14px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
+        }
+        .submit-proof-btn { 
+            background: #ffffff; 
+            color: #000000; 
+            font-size: 11px; 
+            padding: 7px 14px; 
+            border-radius: 8px; 
+            font-weight: 800; 
+            border: none; 
+            cursor: pointer; 
+        }
 
-        .video-selector-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        .v-sel-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #9ca3af; padding: 12px; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
-        .v-sel-btn.playing { border-color: var(--primary); background: rgba(0, 255, 102, 0.08); color: var(--primary); box-shadow: var(--neon-glow); }
+        .video-selector-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; 
+            margin-bottom: 16px; 
+        }
+        .v-sel-btn { 
+            background: rgba(255,255,255,0.02); 
+            border: 1px solid rgba(255,255,255,0.08); 
+            color: #9ca3af; 
+            padding: 14px; 
+            border-radius: 12px; 
+            font-size: 12px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            transition: all 0.3s;
+        }
+        .v-sel-btn.playing { 
+            border-color: var(--primary); 
+            background: rgba(0, 255, 102, 0.06); 
+            color: var(--primary); 
+            box-shadow: var(--neon-glow-green); 
+        }
 
-        input[type="text"], input[type="number"], select { width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; margin-top: 6px; margin-bottom: 12px; font-size: 14px; }
-        .action-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #00ff66, #00cb52); color: #000; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 14px; box-shadow: var(--neon-glow); }
+        input[type="text"], input[type="number"], select { 
+            width: 100%; 
+            padding: 14px 16px; 
+            background: rgba(0,0,0,0.6); 
+            border: 1px solid rgba(255,255,255,0.08); 
+            border-radius: 12px; 
+            color: #ffffff; 
+            margin-top: 6px; 
+            margin-bottom: 14px; 
+            font-size: 14px; 
+            transition: border-color 0.3s;
+        }
+        input:focus { border-color: var(--primary); outline: none; }
+        
+        .action-btn { 
+            width: 100%; 
+            padding: 14px; 
+            background: linear-gradient(135deg, #00ff66, #00cb52); 
+            color: #000000; 
+            border: none; 
+            border-radius: 12px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            font-size: 14px; 
+            box-shadow: var(--neon-glow-green); 
+            transition: all 0.3s;
+        }
 
-        /* 🎮 मिनी-गेम कैनवास डिजाइन */
-        #game-canvas-wrapper { display: flex; flex-direction: column; align-items: center; background: #000; border-radius: 12px; padding: 10px; border: 1px solid rgba(0, 255, 102, 0.2); }
-        #rocket-game-canvas { background: #070b19; border-radius: 8px; cursor: crosshair; display: block; }
+        #game-canvas-wrapper { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            background: #000000; 
+            border-radius: 14px; 
+            padding: 12px; 
+            border: 1px solid rgba(0, 255, 102, 0.15); 
+        }
+        #rocket-game-canvas { 
+            background: #060b13; 
+            border-radius: 10px; 
+            cursor: crosshair; 
+            display: block; 
+        }
 
-        /* 🚨 मिलिट्री-ग्रेड पासवर्ड ओवरले सुरक्षा */
-        #admin-auth-shield-modal { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; display:none; justify-content:center; align-items:center; }
-        .shield-box { background:#0f172a; border:2px solid #ef4444; width:90%; max-width:360px; padding:25px; border-radius:16px; text-align:center; box-shadow:0 0 30px rgba(239,68,68,0.3); }
+        /* 🔒 एडमिन गेटवे ओवरले */
+        #admin-auth-shield-modal { 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.96); 
+            z-index: 9999999; 
+            display: none; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .shield-box { 
+            background: #0f172a; 
+            border: 2px solid #ef4444; 
+            width: 90%; 
+            max-width: 370px; 
+            padding: 26px; 
+            border-radius: 20px; 
+            text-align: center; 
+            box-shadow: 0 0 40px rgba(239,68,68,0.35); 
+        }
 
-        /* 📊 एडमिन पैनल दो कॉलम डिस्ट्रीब्यूशन */
-        .admin-grid-split { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 15px; }
-        .admin-column { background: rgba(15, 23, 42, 0.8); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .admin-grid-split { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 16px; 
+            margin-top: 16px; 
+        }
+        .admin-column { 
+            background: rgba(15, 23, 42, 0.85); 
+            padding: 16px; 
+            border-radius: 14px; 
+            border: 1px solid rgba(255,255,255,0.05); 
+        }
 
-        /* फाइनेंशियल ऑडिट ब्लॉक ग्रिड */
-        .finance-audit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-        .audit-stat-box { background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; border-left: 3px solid var(--primary); }
-        .audit-stat-box.expense { border-left-color: #ef4444; }
+        .finance-audit-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; 
+            margin-top: 12px; 
+        }
+        .audit-stat-box { 
+            background: rgba(0,0,0,0.5); 
+            padding: 12px; 
+            border-radius: 10px; 
+            border-left: 4px solid var(--primary); 
+        }
+        .audit-stat-box.expense { border-left-color: var(--accent); }
         .audit-stat-box.pending { border-left-color: #f59e0b; }
+        
+        /* 📈 लाइव नेटवर्क इन्फ्रास्ट्रक्चर मेट्रिक्स काउंटर ग्रिड */
+        .infra-metrics-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr 1fr; 
+            gap: 10px; 
+            margin-top: 12px; 
+            margin-bottom: 18px; 
+        }
+        .infra-metric-card { 
+            background: rgba(0,0,0,0.7); 
+            padding: 12px 6px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            text-align: center; 
+            position: relative; 
+        }
+        .pulse-dot { 
+            width: 8px; 
+            height: 8px; 
+            background: #00ff66; 
+            border-radius: 50%; 
+            display: inline-block; 
+            position: absolute; 
+            top: 10px; 
+            right: 10px; 
+            box-shadow: 0 0 10px #00ff66; 
+            animation: liveBlinkPulse 1.4s infinite; 
+        }
 
-        /* इतिहास सूची डिजाइन */
-        .ledger-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 8px; margin-bottom: 6px; border: 1px solid rgba(255,255,255,0.05); font-size: 12px; }
+        @keyframes liveBlinkPulse { 
+            0% { opacity: 0.3; transform: scale(0.9); } 
+            50% { opacity: 1; transform: scale(1.1); } 
+            100% { opacity: 0.3; transform: scale(0.9); } 
+        }
 
-        /* बॉटम नेविगेशन - 3 कॉलम लॉक */
-        .nav-bar { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(15px); border-top: 1px solid rgba(255,255,255,0.05); padding: 6px 0; display: flex; justify-content: space-around; z-index: 999; border-radius: 0 0 16px 16px; }
-        .nav-item { background: none; border: none; color: #4b5563; font-size: 11px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; width: 33.33%; padding: 12px 5px; font-weight: 600; }
-        .nav-item.active { color: var(--primary); text-shadow: var(--neon-glow); }
+        .ledger-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 12px; 
+            background: rgba(255,255,255,0.02); 
+            border-radius: 10px; 
+            margin-bottom: 8px; 
+            border: 1px solid rgba(255,255,255,0.04); 
+            font-size: 12px; 
+        }
+
+        /* बॉटम नेविगेशन फिक्स्ड */
+        .nav-bar { 
+            position: fixed; 
+            bottom: 0; 
+            left: 50%; 
+            transform: translateX(-50%);
+            width: 100%; 
+            max-width: 480px;
+            background: rgba(3, 7, 18, 0.96); 
+            backdrop-filter: blur(20px); 
+            border-top: 1px solid rgba(255,255,255,0.06); 
+            padding: 8px 0; 
+            display: flex; 
+            justify-content: space-around; 
+            z-index: 9999; 
+        }
+        .nav-item { 
+            background: none; 
+            border: none; 
+            color: #4b5563; 
+            font-size: 11px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 5px; 
+            cursor: pointer; 
+            width: 25%; 
+            padding: 10px 2px; 
+            font-weight: 600; 
+            transition: all 0.2s;
+        }
+        .nav-item.active { 
+            color: var(--primary); 
+            text-shadow: var(--neon-glow-green); 
+        }
         .nav-item i { font-size: 20px; pointer-events: none; }
         #nav-admin-tab { display: none; color: #ef4444; }
 
-        /* शेयर ओवरले सिस्टम */
-        #share-modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:99999; display:none; justify-content:center; align-items:center; }
+        #share-modal-overlay { 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.92); 
+            z-index: 999999; 
+            display: none; 
+            justify-content: center; 
+            align-items: center; 
+        }
 
-        /* व्हील */
-        .spin-section { display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 15px 0; }
-        .wheel-outer-wrapper { position: relative; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center; }
-        #wheel-canvas { width: 180px; height: 180px; border-radius: 50%; border: 4px solid rgba(255,255,255,0.1); transition: transform 4s cubic-bezier(0.15, 1, 0.2, 1); }
-        .wheel-center-pin { position: absolute; width: 46px; height: 46px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px; color: #000; cursor: pointer; z-index: 5; border: 2px solid var(--accent); }
-        .wheel-pointer { position: absolute; top: -8px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 20px solid #ff0055; z-index: 10; }
+        /* स्पिनर व्हील */
+        .spin-section { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            margin: 16px 0; 
+        }
+        .wheel-outer-wrapper { 
+            position: relative; 
+            width: 190px; 
+            height: 190px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        #wheel-canvas { 
+            width: 190px; 
+            height: 190px; 
+            border-radius: 50%; 
+            border: 4px solid rgba(255,255,255,0.1); 
+            transition: transform 4s cubic-bezier(0.15, 1, 0.2, 1); 
+        }
+        .wheel-center-pin { 
+            position: absolute; 
+            width: 48px; 
+            height: 48px; 
+            background: #ffffff; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 800; 
+            font-size: 11px; 
+            color: #000000; 
+            cursor: pointer; 
+            z-index: 5; 
+            border: 2px solid var(--accent); 
+            box-shadow: var(--neon-glow-purple);
+        }
+        .wheel-pointer { 
+            position: absolute; 
+            top: -10px; 
+            width: 0; 
+            height: 0; 
+            border-left: 12px solid transparent; 
+            border-right: 12px solid transparent; 
+            border-top: 22px solid #ff0055; 
+            z-index: 10; 
+        }
     </style>
 </head>
 <body>
@@ -151,51 +675,51 @@
 
     <div id="admin-auth-shield-modal">
         <div class="shield-box">
-            <i class="fa-solid fa-user-shield" style="font-size:36px; color:#ef4444; margin-bottom:12px;"></i>
-            <h4 style="color:#fff; font-weight:800; margin-bottom:6px;">सिक्योर एडमिन पैनल गेटवे</h4>
-            <p style="font-size:11px; color:#9ca3af; margin-bottom:15px;">अनधिकृत प्रवेश पूर्णतः वर्जित है। हैकर्स ट्रैकिंग सक्रिय है।</p>
+            <i class="fa-solid fa-user-shield" style="font-size:38px; color:#ef4444; margin-bottom:12px;"></i>
+            <h4 id="lbl-shield-title" style="color:#ffffff; font-weight:800; margin-bottom:6px;">सिक्योर एडमिन पैनल गेटवे</h4>
+            <p id="lbl-shield-desc" style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">अनधिकृत प्रवेश वर्जित है।</p>
             <input type="password" id="shield-pin-input" placeholder="मास्टर पिन दर्ज करें" style="text-align:center; letter-spacing:8px; font-size:18px; border-color:#ef4444;">
             <div style="display:flex; gap:10px; margin-top:10px;">
-                <button onclick="verifyShieldAdminAuth()" class="action-btn" style="background:#ef4444; color:#fff;">अनलॉक करें</button>
-                <button onclick="closeAdminShieldOverlay()" class="action-btn" style="background:rgba(255,255,255,0.1); color:#fff;">रद्द करें</button>
+                <button onclick="verifyShieldAdminAuth()" id="lbl-shield-unlock" class="action-btn" style="background:#ef4444; color:#ffffff; box-shadow:none;">अनलॉक</button>
+                <button onclick="closeAdminShieldOverlay()" id="lbl-shield-cancel" class="action-btn" style="background:rgba(255,255,255,0.1); color:#ffffff; box-shadow:none;">रद्द करें</button>
             </div>
         </div>
     </div>
 
     <div id="share-modal-overlay">
-        <div class="card" style="width:85%; max-width:360px; text-align:center; border-color:var(--accent);">
-            <i class="fa-solid fa-gift" style="font-size:36px; color:var(--accent); margin-bottom:10px;"></i>
+        <div class="card" style="width:85%; max-width:370px; text-align:center; border-color:var(--accent);">
+            <i class="fa-solid fa-gift" style="font-size:38px; color:var(--accent); margin-bottom:12px;"></i>
             <h3 id="txt-share-title" style="font-weight:800;">दोस्तों को शेयर करें</h3>
-            <p id="txt-share-desc" style="font-size:12px; color:#9ca3af; margin-bottom:15px;">हर एक सफल शेयर पर आपको **+2000 Coins (₹20.00)** सीधे मिलेंगे!</p>
-            <div style="background:rgba(0,0,0,0.4); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.05); margin-bottom:15px;">
-                <p style="font-size:10px; color:#6b7280;">आपका रियल ट्रैकिंग रेफरल लिंक</p>
+            <p id="txt-share-desc" style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">हर सफल रेफरल पर आपको **+2000 Coins (₹20.00)** सीधे मिलेंगे!</p>
+            <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.06); margin-bottom:16px;">
+                <p style="font-size:11px; color:#6b7280;">आपका ट्रैकिंग इनविटेशन लिंक</p>
                 <p style="color:var(--primary); font-size:13px; font-weight:700; word-break:break-all; margin-top:4px;">https://watchmitra.com/invite?code=WM9911</p>
             </div>
-            <div style="display:flex; flex-direction:column; gap:8px;">
-                <button class="action-btn" onclick="executeLiveShareAction()" style="background:var(--accent); color:#fff; box-shadow:var(--purple-glow);"><i class="fa-solid fa-paper-plane"></i> अभी शेयर करें</button>
-                <button class="action-btn" onclick="closeShareSystemPopup()" style="background:rgba(255,255,255,0.05); color:#fff;">बंद करें</button>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <button class="action-btn" id="lbl-share-now" onclick="executeLiveShareAction()" style="background:var(--accent); color:#ffffff; box-shadow:var(--neon-glow-purple);"><i class="fa-solid fa-paper-plane"></i> अभी शेयर करें</button>
+                <button class="action-btn" id="lbl-share-close" onclick="closeShareSystemPopup()" style="background:rgba(255,255,255,0.05); color:#ffffff; box-shadow:none;">बंद करें</button>
             </div>
         </div>
     </div>
 
     <div id="push-toast">
-        <i class="fa-solid fa-shield-halved" style="color:var(--accent);"></i>
+        <i class="fa-solid fa-shield-halved" style="color:#ef4444; font-size:24px;"></i>
         <div style="flex:1;">
-            <h5 id="noti-title" style="font-size:12px; font-weight:800; color:var(--primary);">🛡️ सुरक्षा अलर्ट</h5>
-            <p id="noti-body" style="font-size:11px; color:#d1d5db;">विवरण लोड हो रहा है...</p>
+            <h5 id="noti-title" style="font-size:13px; font-weight:800; color:#ef4444;">🛡️ वॉचमित्र टीम अलर्ट</h5>
+            <p id="noti-body" style="font-size:11px; color:#e5e7eb;">विवरण लोड हो रहा है...</p>
         </div>
-        <button onclick="closePushToast()" style="background:none; border:none; color:#6b7280;"><i class="fa-solid fa-xmark"></i></button>
+        <button onclick="closePushToast()" style="background:none; border:none; color:#9ca3af;"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
     <header class="header">
         <div class="secret-logo" id="secret-logo-clicker" onclick="handleLogoSecretCounter()" title="3 बार क्लिक करें">
-            <span>Watch</span><span style="color:var(--primary); text-shadow: var(--neon-glow);">Mitra</span>
+            <span>Watch</span><span style="color:var(--primary); text-shadow: var(--neon-glow-green);">Mitra</span>
         </div>
         
         <div class="header-actions">
             <span class="lang-badge" id="lang-toggle-btn" onclick="toggleAppLanguageTranslation()"><i class="fa-solid fa-language"></i> HI</span>
             
-            <button class="share-header-btn" onclick="openShareSystemPopup()" title="शेयर विवरण देखें">
+            <button class="share-header-btn" onclick="openShareSystemPopup()">
                 <i class="fa-solid fa-share-nodes"></i>
             </button>
 
@@ -217,26 +741,26 @@
 
     <div class="page" id="notification-inbox-section" style="padding: 10px 20px 0 20px;">
         <div class="notification-inbox" id="inbox-wrapper" style="display: block;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
                 <h5 id="txt-inbox-title" style="font-size:12px; font-weight:800; color:var(--primary);"><i class="fa-solid fa-message"></i> महत्वपूर्ण अलर्ट लॉग्स</h5>
-                <small onclick="clearAllNotifications()" style="color:#ef4444; font-size:11px; cursor:pointer;">हटाएँ</small>
+                <small onclick="clearAllNotifications()" id="lbl-inbox-clear" style="color:#ef4444; font-size:11px; cursor:pointer;">हटाएँ</small>
             </div>
             <div id="notifications-list-container">
-                <div class="noti-item noti-success"><b>✅ सिंक अलर्ट:</b> आपका वॉलेट सुरक्षित रूप से सर्वर के साथ कनेक्टेड है।</div>
-                <div class="noti-item noti-failed" id="fraud-alert-item" style="display:none;"><b>🚨 चेतावनी:</b> सिस्टम ने अवैध एक्टिविटी डिटेक्ट की है! बैलेंस ज़ीरो होने का खतरा है।</div>
+                <div class="noti-item noti-success"><b>✅ वॉचमित्र टीम:</b> आपका सुरक्षित वॉलेट सिंक मोड में एक्टिव है।</div>
+                <div class="noti-item noti-failed" id="fraud-alert-item" style="display:none;"><b>🚨 वॉचमित्र टीम:</b> सिस्टम सुरक्षा कवच सक्रिय।</div>
             </div>
         </div>
     </div>
 
     <div id="home-page" class="page active">
         
-        <div class="card" style="background: linear-gradient(135deg, rgba(189,0,255,0.08), rgba(0,0,0,0.5)); border-color: rgba(189,0,255,0.25);">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <div class="card" style="background: linear-gradient(135deg, rgba(189,0,255,0.08), rgba(0,0,0,0.4)); border-color: rgba(189,0,255,0.25);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
                 <div>
-                    <h4 id="txt-streak-title" style="font-size:13px; font-weight:800;">🎁 डेली रिवॉर्ड स्ट्रीक</h4>
-                    <p id="txt-streak-desc" style="font-size:11px; color:#9ca3af;">रोज लॉगिन बोनस क्लेम करें</p>
+                    <h4 id="txt-streak-title" style="font-size:13px; font-weight:800;">🎁 डेली रिवॉर्ड Streek</h4>
+                    <p id="txt-streak-desc" style="font-size:11px; color:var(--text-muted);">रोजाना लॉगिन बोनस क्लेम करें</p>
                 </div>
-                <button id="daily-bonus-btn" class="task-btn" onclick="triggerDailyStreakBonus()" style="background:var(--accent); color:#fff;">क्लेम (+20)</button>
+                <button id="daily-bonus-btn" class="task-btn" onclick="triggerDailyStreakBonus()" style="background:var(--accent); color:#ffffff; box-shadow:var(--neon-glow-purple);">क्लेम (+20)</button>
             </div>
             
             <div class="premium-streak-container">
@@ -253,34 +777,34 @@
         </div>
 
         <div class="card">
-            <h4 id="txt-wheel-title" style="font-size:13px; font-weight:800; text-align:center; margin-bottom:10px;">🎡 लकी स्पिन व्हील</h4>
+            <h4 id="txt-wheel-title" style="font-size:13px; font-weight:800; text-align:center; margin-bottom:12px;">🎡 लकी स्पिन व्हील</h4>
             <div class="spin-section">
                 <div class="wheel-outer-wrapper">
                     <div class="wheel-pointer"></div>
                     <canvas id="wheel-canvas" width="180" height="180"></canvas>
                     <div id="main-wheel-trigger" class="wheel-center-pin" onclick="handleWheelClickLogic()">SPIN</div>
                 </div>
-                <p id="wheel-status-lbl" style="font-size:11px; color:#9ca3af; margin-top:8px; height:12px;"></p>
+                <p id="wheel-status-lbl" style="font-size:11px; color:var(--text-muted); margin-top:10px; height:12px;"></p>
             </div>
         </div>
 
-        <div class="card" style="background: linear-gradient(135deg, rgba(0,255,102,0.08), rgba(15,23,42,0.9)); border-color: var(--primary);">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <div class="card" style="background: linear-gradient(135deg, rgba(0,255,102,0.06), rgba(15,23,42,0.9)); border-color: var(--primary);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <h4 style="font-size:13px; font-weight:800; color:var(--primary);"><i class="fa-solid fa-gamepad"></i> साइबर टैप रॉकेट (Mini-Game)</h4>
-                <span style="font-size:10px; background:#ef4444; color:#fff; padding:2px 6px; border-radius:4px; font-weight:700;">LIVE</span>
+                <span style="font-size:10px; background:#ef4444; color:#ffffff; padding:2px 6px; border-radius:4px; font-weight:700;">LIVE</span>
             </div>
-            <p id="txt-game-desc" style="font-size:11px; color:#d1d5db; margin-bottom:10px;">रॉकेट्स पर टैप करके उन्हें फोड़ें! 15 स्मैश होने पर **+100 Coins** तुरंत मिलेंगे।</p>
+            <p id="txt-game-desc" style="font-size:11px; color:#e5e7eb; margin-bottom:12px;">रॉकेट्स पर टैप करके उन्हें फोड़ें! 15 स्मैश होने पर +100 Coins तुरंत मिलेंगे।</p>
             
             <div id="game-canvas-wrapper">
                 <canvas id="rocket-game-canvas" width="320" height="150"></canvas>
-                <div style="display:flex; justify-content:space-between; width:100%; margin-top:8px; font-size:11px;">
+                <div style="display:flex; justify-content:space-between; width:100%; margin-top:10px; font-size:11px;">
                     <span id="game-score-box">रॉकेट्स स्मैश: 0 / 15</span>
-                    <button id="txt-game-start" onclick="startRocketMiniGame()" style="background:var(--primary); border:none; color:#000; padding:2px 10px; font-weight:800; border-radius:4px; cursor:pointer;">गेम शुरू करें</button>
+                    <button id="txt-game-start" onclick="startRocketMiniGame()" style="background:var(--primary); border:none; color:#000000; padding:3px 12px; font-weight:800; border-radius:4px; cursor:pointer;">गेम शुरू करें</button>
                 </div>
             </div>
         </div>
 
-        <div class="video-selector-grid" style="margin-top:15px;">
+        <div class="video-selector-grid" style="margin-top:16px;">
             <button id="vchan-0" class="v-sel-btn playing" onclick="switchVideoIframe('dQw4w9WgXcQ', 0)"><i class="fa-solid fa-music"></i> ट्रैक 01</button>
             <button id="vchan-1" class="v-sel-btn" onclick="switchVideoIframe('9wt6Y9a06pE', 1)"><i class="fa-solid fa-headset"></i> लो-फाई 02</button>
             <button id="vchan-2" class="v-sel-btn" onclick="switchVideoIframe('5qap5aO4i9A', 2)"><i class="fa-solid fa-bolt"></i> बॉलीवुड मेष</button>
@@ -290,10 +814,10 @@
         <div class="video-box"><div id="player-frame"></div></div>
         <div class="progress-container"><div id="video-progress-fill" class="progress-bar-fill"></div></div>
 
-        <button id="claim-video-btn" class="reward-btn">📺 वीडियो प्ले करके 3 मिनट देखें</button>
-        <p id="video-status-lbl" style="text-align:center; font-size:11px; color:#6b7280; margin-top:8px;">प्लेयर पूरी तरह रेडी है...</p>
+        <button id="claim-video-btn" class="reward-btn">📺 वीडियो play करके 3 मिनट देखें</button>
+        <p id="video-status-lbl" style="text-align:center; font-size:11px; color:#6b7280; margin-top:8px;">प्लेयर रेडी मोड में है...</p>
 
-        <h4 id="txt-cpa-title" style="margin: 25px 0 10px 0; font-size:13px; color:var(--accent); font-weight:800;"><i class="fa-solid fa-bolt"></i> विशेष सीपीए टास्क (Complete & Submit Here)</h4>
+        <h4 id="txt-cpa-title" style="margin: 25px 0 12px 0; font-size:13px; color:var(--accent); font-weight:800;"><i class="fa-solid fa-bolt"></i> विशेष सीपीए टास्क (Complete & Submit Here)</h4>
         <div class="card" id="all-tasks-box">
             
             <div class="task-row" id="container-task1">
@@ -304,7 +828,7 @@
                 <div class="upload-zone" id="zone-task1" style="display:none;">
                     <label class="file-lbl" for="file-task1"><i class="fa-solid fa-camera"></i> स्क्रीनशॉट</label>
                     <input type="file" id="file-task1" accept="image/*" onchange="showFileFeedback('task1')">
-                    <span id="feed-task1" style="font-size:11px; color:#9ca3af;">कोई फ़ाइल नहीं</span>
+                    <span id="feed-task1" style="font-size:11px; color:var(--text-muted);">कोई फ़ाइल नहीं</span>
                     <button class="submit-proof-btn" onclick="submitCpaTaskProof('task1', 3500, 'Finance App')">सबमिट</button>
                 </div>
             </div>
@@ -317,7 +841,7 @@
                 <div class="upload-zone" id="zone-task2" style="display:none;">
                     <label class="file-lbl" for="file-task2"><i class="fa-solid fa-camera"></i> स्क्रीनशॉट</label>
                     <input type="file" id="file-task2" accept="image/*" onchange="showFileFeedback('task2')">
-                    <span id="feed-task2" style="font-size:11px; color:#9ca3af;">कोई फ़ाइल नहीं</span>
+                    <span id="feed-task2" style="font-size:11px; color:var(--text-muted);">कोई फ़ाइल नहीं</span>
                     <button class="submit-proof-btn" onclick="submitCpaTaskProof('task2', 5000, 'Crypto Wallet')">सबमिट</button>
                 </div>
             </div>
@@ -330,7 +854,7 @@
                 <div class="upload-zone" id="zone-task3" style="display:none;">
                     <label class="file-lbl" for="file-task3"><i class="fa-solid fa-camera"></i> स्क्रीनशॉट</label>
                     <input type="file" id="file-task3" accept="image/*" onchange="showFileFeedback('task3')">
-                    <span id="feed-task3" style="font-size:11px; color:#9ca3af;">कोई फ़ाइल नहीं</span>
+                    <span id="feed-task3" style="font-size:11px; color:var(--text-muted);">कोई फ़ाइल नहीं</span>
                     <button class="submit-proof-btn" onclick="submitCpaTaskProof('task3', 1500, 'Instagram Follow')">सबमिट</button>
                 </div>
             </div>
@@ -340,20 +864,20 @@
 
     <div id="withdraw-page" class="page">
         <div class="card" style="border-color: var(--accent);">
-            <h4 id="txt-kyc-title" style="font-weight:800; color:var(--accent); font-size:13px; margin-bottom:5px;"><i class="fa-solid fa-id-card"></i> 🔒 अनिवार्य बैंक एवं UPI KYC वेरीफिकेशन</h4>
-            <p style="font-size:11px; color:#9ca3af; margin-bottom:12px;">भुगतान सुरक्षा के लिए अपना डेटा सही लॉक करें.</p>
+            <h4 id="txt-kyc-title" style="font-weight:800; color:var(--accent); font-size:13px; margin-bottom:6px;"><i class="fa-solid fa-id-card"></i> 🔒 अनिवार्य बैंक एवं UPI KYC वेरीफिकेशन</h4>
+            <p style="font-size:11px; color:var(--text-muted); margin-bottom:14px;">भुगतान सुरक्षा के लिए अपना डेटा सही लॉक करें.</p>
             
-            <label style="font-size:11px; color:#9ca3af;">खाताधारक का नाम</label>
+            <label style="font-size:11px; color:var(--text-muted);">खाताधारक का नाम</label>
             <input type="text" id="kyc-name" placeholder="अपना पूरा नाम दर्ज करें">
             
-            <label style="font-size:11px; color:#9ca3af;">बैंक खाता संख्या / UPI ID</label>
+            <label style="font-size:11px; color:var(--text-muted);">बैंक खाता संख्या / UPI ID</label>
             <input type="text" id="kyc-upi" placeholder="UPI ID या अकाउंट नंबर डालें">
             
-            <label style="font-size:11px; color:#9ca3af;">IFSC कोड</label>
-            <input type="text" id="kyc-ifsc" placeholder="IFSC कोड (जैसे- SBIN0001234)">
+            <label style="font-size:11px; color:var(--text-muted);">IFSC कोड</label>
+            <input type="text" id="kyc-ifsc" placeholder="IFSC कोड दर्ज करें">
 
-            <button class="action-btn" style="background:rgba(189,0,255,0.2); border:1px solid var(--accent); color:#fff; font-size:12px; padding:10px;" onclick="saveKycDetailsData()">KYC डेटा सुरक्षित लॉक करें</button>
-            <p id="kyc-status-lbl" style="font-size:11px; color:var(--primary); text-align:center; margin-top:8px; font-weight:700;"></p>
+            <button class="action-btn" id="lbl-kyc-btn" style="background:rgba(189,0,255,0.15); border:1px solid var(--accent); color:#ffffff; font-size:12px; padding:12px;" onclick="saveKycDetailsData()">KYC डेटा सुरक्षित लॉक करें</button>
+            <p id="kyc-status-lbl" style="font-size:11px; color:var(--primary); text-align:center; margin-top:10px; font-weight:700;"></p>
         </div>
 
         <div class="card">
@@ -365,96 +889,112 @@
     </div>
 
     <div id="profile-page" class="page">
-        <div class="card" style="text-align:center; background: linear-gradient(135deg, rgba(15,23,42,0.8), rgba(0,0,0,0.5)); border-color:rgba(255,255,255,0.1);">
-            <div style="width:64px; height:64px; background:rgba(255,255,255,0.05); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 10px auto; border:1px solid var(--primary);">
-                <i class="fa-solid fa-user" style="font-size:28px; color:var(--primary);"></i>
+        <div class="card" style="text-align:center; background: linear-gradient(135deg, rgba(15,23,42,0.8), rgba(0,0,0,0.6));">
+            <div style="width:66px; height:66px; background:rgba(255,255,255,0.04); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px auto; border:1px solid var(--primary);">
+                <i class="fa-solid fa-user" style="font-size:30px; color:var(--primary);"></i>
             </div>
             <h3 id="txt-profile-user" style="font-weight:800; font-size:16px;">मास्टर यूज़र अकाउंट</h3>
-            <h5 id="profile-coins-lbl" style="color:var(--primary); font-size:22px; font-weight:800; margin-top:5px;">0 Coins (₹0.00)</h5>
+            <h5 id="profile-coins-lbl" style="color:var(--primary); font-size:24px; font-weight:800; margin-top:6px;">0 Coins (₹0.00)</h5>
             
-            <button id="txt-profile-dash-btn" onclick="toggleSubDashboardLayout()" class="action-btn" style="margin-top:15px; background:linear-gradient(135deg, #bd00ff, #7e22ce); color:#fff; padding:8px; font-size:12px;"><i class="fa-solid fa-chart-pie"></i> ऐप डैशबोर्ड खोलें (Top 10 Rankings)</button>
+            <button id="txt-profile-dash-btn" onclick="toggleSubDashboardLayout()" class="action-btn" style="margin-top:16px; background:linear-gradient(135deg, #bd00ff, #7e22ce); color:#ffffff; padding:10px; font-size:12px;"><i class="fa-solid fa-chart-pie"></i> ऐप डैशबोर्ड खोलें (Top 10 Rankings)</button>
         </div>
 
-        <div id="sub-dashboard-view-box" class="card" style="display:none; border-color:var(--accent); background:rgba(10,10,18,0.95);">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <div id="sub-dashboard-view-box" class="card" style="display:none; border-color:var(--accent); background:rgba(10,10,18,0.98);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
                 <h4 style="font-weight:800; font-size:13px; color:var(--accent);"><i class="fa-solid fa-trophy"></i> वॉचमित्र लाइव टॉप 10 लीडरबोर्ड</h4>
-                <i class="fa-solid fa-circle-xmark" onclick="toggleSubDashboardLayout()" style="color:#ef4444; cursor:pointer; font-size:16px;"></i>
+                <i class="fa-solid fa-circle-xmark" onclick="toggleSubDashboardLayout()" style="color:#ef4444; cursor:pointer; font-size:18px;"></i>
             </div>
-            <div id="leaderboard-ranking-list" style="display:flex; flex-direction:column; gap:6px;"></div>
+            <div id="leaderboard-ranking-list" style="display:flex; flex-direction:column; gap:8px;"></div>
         </div>
 
-        <div class="card" style="border-color: rgba(0, 255, 102, 0.2);">
-            <h4 id="txt-history-title" style="font-weight:800; font-size:13px; color:var(--primary); margin-bottom:12px;"><i class="fa-solid fa-receipt"></i> विस्तृत वॉलेट पासबुक इतिहास</h4>
+        <div class="card" style="border-color: rgba(0, 255, 102, 0.15);">
+            <h4 id="txt-history-title" style="font-weight:800; font-size:13px; color:var(--primary); margin-bottom:14px;"><i class="fa-solid fa-receipt"></i> विस्तृत वॉलेट पासबुक इतिहास</h4>
             <div id="user-ledger-history-container">
-                <p style="font-size:11px; color:#6b7280; text-align:center; padding:10px;">अभी तक कोई लेनदेन इतिहास नहीं है.</p>
+                <p style="font-size:11px; color:#6b7280; text-align:center; padding:10px;">कोई इतिहास नहीं है.</p>
             </div>
         </div>
     </div>
 
     <div id="admin-page" class="page">
-        <div class="card" style="border-color:#ef4444; background:rgba(15,23,42,0.95);">
-            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(239,68,68,0.2); padding-bottom:10px; margin-bottom:15px;">
-                <h4 style="color:#ef4444; font-weight:800;"><i class="fa-solid fa-user-shield"></i> वॉचमित्र केन्द्रीय एडमिन रूम (Vault)</h4>
-                <button onclick="lockAdminPanelInstantly()" style="background:#ef4444; border:none; color:#fff; font-size:10px; padding:3px 8px; font-weight:800; border-radius:4px; cursor:pointer;">पैनल锁 करें</button>
+        <div class="card" style="border-color:#ef4444; background:rgba(15,23,42,0.98);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(239,68,68,0.2); padding-bottom:12px; margin-bottom:16px;">
+                <h4 id="txt-adm-title" style="color:#ef4444; font-weight:800;"><i class="fa-solid fa-user-shield"></i> वॉचमित्र केन्द्रीय एडमिन रूम (Vault)</h4>
+                <button onclick="lockAdminPanelInstantly()" id="txt-adm-lock-btn" style="background:#ef4444; border:none; color:#ffffff; font-size:11px; padding:4px 10px; font-weight:800; border-radius:4px; cursor:pointer;">पैनल लॉक करें</button>
             </div>
             
+            <div class="infra-metrics-grid">
+                <div class="infra-metric-card">
+                    <span id="lbl-adm-node-total" style="font-size:10px; color:var(--text-muted); display:block; margin-bottom:4px;">कुल जुड़े यूज़र</span>
+                    <strong style="font-size:14px; color:var(--crypto-cyan); font-weight:800;">1,240</strong>
+                </div>
+                <div class="infra-metric-card">
+                    <div class="pulse-dot"></div>
+                    <span id="lbl-adm-node-live" style="font-size:10px; color:var(--text-muted); display:block; margin-bottom:4px;">लाइव एक्टिव</span>
+                    <strong style="font-size:14px; color:var(--primary); font-weight:800;">42</strong>
+                </div>
+                <div class="infra-metric-card">
+                    <span id="lbl-adm-node-dl" style="font-size:10px; color:var(--text-muted); display:block; margin-bottom:4px;">कुल डाउनलोड</span>
+                    <strong style="font-size:14px; color:var(--accent); font-weight:800;">2,500</strong>
+                </div>
+            </div>
+
             <div class="admin-grid-split">
                 
                 <div class="admin-column">
-                    <h5 style="color:#ef4444; font-weight:800; font-size:12px; margin-bottom:10px;"><i class="fa-solid fa-folder-open"></i> 1. कंपनी लीगल डाक्यूमेंट्स मैनेजर (Editable Form)</h5>
+                    <h5 id="txt-adm-legal-title" style="color:#ef4444; font-weight:800; font-size:12px; margin-bottom:12px;"><i class="fa-solid fa-folder-open"></i> 1. कंपनी लीगल डाक्यूमेंट्स मैनेजर (Editable Form)</h5>
                     <div style="display:flex; flex-direction:column; gap:2px; font-size:11px;">
                         
                         <label style="color:#9ca3af; font-size:10px;">🏢 MCA कंपनी CIN नंबर:</label>
-                        <input type="text" id="adm-form-cin" value="U72900UK2026PTC991188" style="margin-bottom:8px; padding:8px; background:#000;">
+                        <input type="text" id="adm-form-cin" value="U72900UK2026PTC991188" style="margin-bottom:8px; padding:10px; background:#000000;">
 
                         <label style="color:#9ca3af; font-size:10px;">📜 GSTIN इंडस्ट्रियल सर्टिफिकेट कोड:</label>
-                        <input type="text" id="adm-form-gst" value="05AAACW9911M1Z2" style="margin-bottom:8px; padding:8px; background:#000;">
+                        <input type="text" id="adm-form-gst" value="05AAACW9911M1Z2" style="margin-bottom:8px; padding:10px; background:#000000;">
 
                         <label style="color:#9ca3af; font-size:10px;">⚡ MSME उद्योग आधार नंबर:</label>
-                        <input type="text" id="adm-form-msme" value="UDYAM-UK-12-0099112" style="margin-bottom:8px; padding:8px; background:#000;">
+                        <input type="text" id="adm-form-msme" value="UDYAM-UK-12-0099112" style="margin-bottom:8px; padding:10px; background:#000000;">
 
                         <label style="color:#9ca3af; font-size:10px;">💼 बिजनेस पैन (PAN Card Num):</label>
-                        <input type="text" id="adm-form-pan" value="AAACW9911M" style="margin-bottom:8px; padding:8px; background:#000;">
+                        <input type="text" id="adm-form-pan" value="AAACW9911M" style="margin-bottom:8px; padding:10px; background:#000000;">
 
                         <label style="color:#9ca3af; font-size:10px;">💳 मर्चेंट गेटवे लाइव API टोकन:</label>
-                        <input type="text" id="adm-form-api" value="rzp_live_secret_token_991155" style="margin-bottom:10px; padding:8px; background:#000;">
+                        <input type="text" id="adm-form-api" value="rzp_live_secret_token_991155" style="margin-bottom:12px; padding:10px; background:#000000;">
 
-                        <button onclick="saveAdminCorporateVaultData()" class="action-btn" style="padding:6px; font-size:11px; background:var(--accent); color:#fff;"><i class="fa-solid fa-floppy-disk"></i> डाक्यूमेंट्स वाल्ट डेटा सहेजें</button>
+                        <button onclick="saveAdminCorporateVaultData()" id="txt-adm-save-btn" class="action-btn" style="padding:10px; font-size:12px; background:var(--accent); color:#ffffff; box-shadow:none;"><i class="fa-solid fa-floppy-disk"></i> डाक्यूमेंट्स वाल्ट डेटा सहेजें</button>
                     </div>
                 </div>
 
                 <div class="admin-column" style="border-color:var(--primary);">
-                    <h5 style="color:var(--primary); font-weight:800; font-size:12px; margin-bottom:5px;"><i class="fa-solid fa-chart-line"></i> 2. लाइव ऐप अर्निंग एवं पेआउट ऑडिट</h5>
-                    <p style="font-size:10px; color:#9ca3af;">नेटवर्क स्केल: 500 एक्टिव रियल-टाइम यूज़र्स</p>
+                    <h5 id="txt-adm-audit-title" style="color:var(--primary); font-weight:800; font-size:12px; margin-bottom:6px;"><i class="fa-solid fa-chart-line"></i> 2. लाइव ऐप अर्निंग एवं पेआउट ऑडिट</h5>
+                    <p id="txt-adm-audit-desc" style="font-size:10px; color:#9ca3af;">नेटवर्क स्केल: 500 एक्टिव रियल-टाइम यूज़र्स</p>
                     
                     <div class="finance-audit-grid">
                         <div class="audit-stat-box">
-                            <span style="font-size:9px; color:#9ca3af; display:block;">कुल विज्ञापन राजस्व (Ad Revenue)</span>
+                            <span id="lbl-audit-rev" style="font-size:10px; color:#9ca3af; display:block; margin-bottom:2px;">कुल विज्ञापन राजस्व</span>
                             <strong style="font-size:12px; color:var(--primary);">₹1,45,200.00</strong>
                         </div>
                         <div class="audit-stat-box expense">
-                            <span style="font-size:9px; color:#9ca3af; display:block;">यूज़र्स की कुल कमाई (Liability)</span>
-                            <strong style="font-size:12px; color:#bd00ff;">₹68,500.00</strong>
+                            <span id="lbl-audit-lia" style="font-size:10px; color:#9ca3af; display:block; margin-bottom:2px;">यूज़र्स की कुल कमाई</span>
+                            <strong style="font-size:12px; color:var(--accent);">₹68,500.00</strong>
                         </div>
                         <div class="audit-stat-box pending">
-                            <span style="font-size:9px; color:#9ca3af; display:block;">लंबित भुगतान (Pending Requests)</span>
+                            <span id="lbl-audit-pen" style="font-size:10px; color:#9ca3af; display:block; margin-bottom:2px;">लंबित भुगतान</span>
                             <strong id="admin-pending-cash" style="font-size:12px; color:#f59e0b;">₹0.00</strong>
                         </div>
                         <div class="audit-stat-box">
-                            <span style="font-size:9px; color:#9ca3af; display:block;">सफलतापूर्वक वितरित (Paid Capital)</span>
-                            <strong style="font-size:12px; color:#fff;">₹32,400.00</strong>
+                            <span id="lbl-audit-paid" style="font-size:10px; color:#9ca3af; display:block; margin-bottom:2px;">वितरित भुगतान</span>
+                            <strong style="font-size:12px; color:#ffffff;">₹32,400.00</strong>
                         </div>
                     </div>
 
-                    <div style="background:#000; padding:10px; border-radius:8px; margin-top:12px; font-size:11px; border:1px solid rgba(255,255,255,0.05);">
+                    <div style="background:#000000; padding:12px; border-radius:10px; margin-top:14px; font-size:12px; border:1px solid rgba(255,255,255,0.06);">
                         <p id="admin-withdraw-log" style="color:#9ca3af;">कोई लंबित निकासी अनुरोध नहीं है.</p>
-                        <div id="admin-withdraw-actions" style="display:none; gap:8px; margin-top:8px;">
-                            <button onclick="approvePayoutManual()" style="background:var(--primary); color:#000; font-weight:800; padding:4px 10px; border:none; border-radius:4px; font-size:11px; cursor:pointer;">स्वीकृत करें</button>
-                            <button onclick="rejectPayoutManual()" style="background:#ef4444; color:#fff; font-weight:800; padding:4px 10px; border:none; border-radius:4px; font-size:11px; cursor:pointer;">रद्द करें</button>
+                        <div id="admin-withdraw-actions" style="display:none; gap:10px; margin-top:10px;">
+                            <button onclick="approvePayoutManual()" style="background:var(--primary); color:#000000; font-weight:800; padding:6px 14px; border:none; border-radius:6px; font-size:11px; cursor:pointer;">स्वीकृत करें</button>
+                            <button onclick="rejectPayoutManual()" style="background:#ef4444; color:#ffffff; font-weight:800; padding:6px 14px; border:none; border-radius:6px; font-size:11px; cursor:pointer;">रद्द करें</button>
                         </div>
                     </div>
 
-                    <button onclick="triggerManualScreenshotReject()" style="background:linear-gradient(135deg, #ef4444, #b91c1c); color:#fff; padding:10px; font-weight:700; border-radius:8px; width:100%; border:none; cursor:pointer; font-size:11px; margin-top:10px;"><i class="fa-solid fa-triangle-exclamation"></i> फेक स्क्रीनशॉट रिजेक्ट करें (ऑटो स्ट्राइक)</button>
+                    <button onclick="triggerManualScreenshotReject()" id="txt-adm-strike-btn" style="background:linear-gradient(135deg, #ef4444, #b91c1c); color:#ffffff; padding:12px; font-weight:700; border-radius:10px; width:100%; border:none; cursor:pointer; font-size:11px; margin-top:14px;"><i class="fa-solid fa-triangle-exclamation"></i> फेक स्क्रीनशॉट रिजेक्ट करें (ऑटो स्ट्राइक)</button>
                 </div>
             </div>
         </div>
@@ -472,36 +1012,39 @@
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
     let ytPlayer;
-    let localCoins = parseInt(localStorage.getItem('appCoins_v21')) || 500; 
+    let localCoins = parseInt(localStorage.getItem('appCoins_v22')) || 500; 
     let videoWatchDone = false;
     let watchTimerInterval;
     let secondsWatched = 0;
     let lastValidTime = 0;
-    let fraudStrikeCounter = parseInt(localStorage.getItem('fraudStrikes_v21')) || 0;
+    let fraudStrikeCounter = parseInt(localStorage.getItem('fraudStrikes_v22')) || 0;
     let logoClickCounter = 0;
     const TARGET_SECONDS = 180; 
     let currentAppLanguage = 'hi';
-
-    // लकी व्हील के निरंतर स्पिन न होने के बग का फिक्स
     let totalWheelRotationDegrees = 0;
 
-    // इतिहास बहीखाता डेटाबेस (तारीख और सटीक समय के साथ)
-    let appLedgerHistory = JSON.parse(localStorage.getItem('appLedgerHistory_v21')) || [
+    let appLedgerHistory = JSON.parse(localStorage.getItem('appLedgerHistory_v22')) || [
         { title: "साइनअप बोनस क्रेडिट", time: "30 Jun 2026, 10:00 AM", type: "plus", amt: 500 }
     ];
 
-    // लाइव ट्रांसलेशन डिक्शनरी इंजन
+    // 🌐 ग्लोबल सिंक ट्रांसलेशन डिक्शनरी (यूज़र + कॉर्पोरेट एडमिन सिंक फिक्स)
     const translationDictionary = {
         hi: {
             home: "होम", withdraw: "निकासी", profile: "प्रोफ़ाइल",
-            streakTitle: "🎁 डेली रिवॉर्ड स्ट्रीक", streakDesc: "रोज लॉगिन बोनस क्लेम करें",
+            streakTitle: "🎁 डेली रिवॉर्ड Streek", streakDesc: "रोजाना लॉगिन बोनस क्लेम करें",
             wheelTitle: "🎡 लकी स्पिन व्हील", gameDesc: "रॉकेट्स पर टैप करके उन्हें फोड़ें! 15 स्मैश होने पर +100 Coins तुरंत मिलेंगे।",
             gameStart: "गेम शुरू करें", cpaTitle: "⚡ विशेष सीपीए टास्क (Complete & Submit Here)",
             kycTitle: "🔒 अनिवार्य बैंक एवं UPI KYC वेरीफिकेशन", withdrawTitle: "🏦 निकासी अनुरोध केंद्र",
             withdrawBtn: "अनुरोध सबमिट करें", profileUser: "मास्टर यूज़र अकाउंट",
             profileDashBtn: "ऐप डैशबोर्ड खोलें (Top 10 Rankings)", historyTitle: "💰 विस्तृत वॉलेट पासबुक इतिहास",
-            shareTitle: "दोस्तों को शेयर करें", shareDesc: "हर एक सफल शेयर पर आपको +2000 Coins (₹20.00) सीधे मिलेंगे!",
-            inboxTitle: "मार्कपूर्ण अलर्ट लॉग्स", claimVideo: "📺 वीडियो प्ले करके 3 मिनट देखें"
+            shareTitle: "दोस्तों को शेयर करें", shareDesc: "हर सफल रेफरल पर आपको +2000 Coins (₹20.00) सीधे मिलेंगे!",
+            inboxTitle: "महत्वपूर्ण अलर्ट लॉग्स", claimVideo: "📺 वीडियो प्ले करके 3 मिनट देखें",
+            admTitle: "वॉचमित्र केन्द्रीय एडमिन रूम (Vault)", admLock: "पैनल लॉक करें",
+            admNodeTotal: "कुल जुड़े यूज़र", admNodeLive: "लाइव एक्टिव", admNodeDl: "कुल डाउनलोड",
+            admLegalTitle: "1. कंपनी लीगल डाक्यूमेंट्स मैनेजर (Editable Form)", admSaveBtn: "डाक्यूमेंट्स वाल्ट डेटा सहेजें",
+            admAuditTitle: "2. लाइव ऐप अर्निंग एवं पेआउट ऑडिट", admAuditDesc: "नेटवर्क स्केल: 500 एक्टिव रियल-टाइम यूज़र्स",
+            auditRev: "कुल विज्ञापन राजस्व", auditLia: "यूज़र्स की कुल कमाई", auditPen: "लंबित भुगतान", auditPaid: "वितरित भुगतान",
+            admStrikeBtn: "फेक स्क्रीनशॉट रिजेक्ट करें (ऑटो स्ट्राइक)"
         },
         en: {
             home: "Home", withdraw: "Withdraw", profile: "Profile",
@@ -512,7 +1055,13 @@
             withdrawBtn: "Submit Payout Request", profileUser: "Master User Account",
             profileDashBtn: "Open Leaderboard Dashboard (Top 10)", historyTitle: "💰 Detailed Wallet Passbook Ledger",
             shareTitle: "Invite & Share Rewards", shareDesc: "Get +2000 Coins (₹20.00) directly for every successful tracking invite!",
-            inboxTitle: "Critical Security Logs", claimVideo: "📺 Stream Video for 3 Minutes to Claim"
+            inboxTitle: "Critical Security Logs", claimVideo: "📺 Stream Video for 3 Minutes to Claim",
+            admTitle: "WatchMitra Core Admin Vault Room", admLock: "Lock Vault Panel",
+            admNodeTotal: "Total Connected Users", admNodeLive: "Live Concurrent Nodes", admNodeDl: "Total Downloads Assets",
+            admLegalTitle: "1. Corporate Compliance Document Form (Editable)", admSaveBtn: "Commit Vault Credentials",
+            admAuditTitle: "2. Live Enterprise Revenue & Asset Audit", admAuditDesc: "Infrastructure Scale: 500 Active Distributed Terminals",
+            auditRev: "Total Ad Gross Revenue", auditLia: "Total Registered Liabilities", auditPen: "Pending Net Settlement", auditPaid: "Disbursed Paid Capital",
+            admStrikeBtn: "Reject Fake Assets (Auto Strike Dispatch)"
         }
     };
 
@@ -526,14 +1075,14 @@
             if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
             if (audioCtx.state === 'suspended') { audioCtx.resume(); }
             let osc = audioCtx.createOscillator(); let gain = audioCtx.createGain();
-            osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            osc.type = 'sine'; osc.frequency.setValueAtTime(580, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
             osc.connect(gain); gain.connect(audioCtx.destination);
             osc.start(); osc.stop(audioCtx.currentTime + 0.1);
         } catch(e) {}
     }
 
-    // ट्रांसलेशन परफेक्टली वर्किंग फिक्स
+    // 🌐 ग्लोबल ट्रांसलेशन भाषा स्विचर सिंक
     function toggleAppLanguageTranslation() {
         currentAppLanguage = (currentAppLanguage === 'hi') ? 'en' : 'hi';
         document.getElementById('lang-toggle-btn').innerHTML = `<i class="fa-solid fa-language"></i> ${currentAppLanguage.toUpperCase()}`;
@@ -558,9 +1107,24 @@
         document.getElementById('txt-share-desc').innerText = dict.shareDesc;
         document.getElementById('txt-inbox-title').innerText = dict.inboxTitle;
         if(!videoWatchDone) { document.getElementById('claim-video-btn').innerText = dict.claimVideo; }
+
+        // 📈 एडमिन एलिमेंट्स एक साथ तुरंत सिंक होंगे
+        document.getElementById('txt-adm-title').innerHTML = `<i class="fa-solid fa-user-shield"></i> ` + dict.admTitle;
+        document.getElementById('txt-adm-lock-btn').innerText = dict.admLock;
+        document.getElementById('lbl-adm-node-total').innerText = dict.admNodeTotal;
+        document.getElementById('lbl-adm-node-live').innerText = dict.lbl-adm-node-live;
+        document.getElementById('lbl-adm-node-dl').innerText = dict.admNodeDl;
+        document.getElementById('txt-adm-legal-title').innerHTML = `<i class="fa-solid fa-folder-open"></i> ` + dict.admLegalTitle;
+        document.getElementById('txt-adm-save-btn').innerHTML = `<i class="fa-solid fa-floppy-disk"></i> ` + dict.admSaveBtn;
+        document.getElementById('txt-adm-audit-title').innerHTML = `<i class="fa-solid fa-chart-line"></i> ` + dict.admAuditTitle;
+        document.getElementById('txt-adm-audit-desc').innerText = dict.admAuditDesc;
+        document.getElementById('lbl-audit-rev').innerText = dict.auditRev;
+        document.getElementById('lbl-audit-lia').innerText = dict.auditLia;
+        document.getElementById('lbl-audit-pen').innerText = dict.auditPen;
+        document.getElementById('lbl-audit-paid').innerText = dict.auditPaid;
+        document.getElementById('txt-adm-strike-btn').innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ` + dict.admStrikeBtn;
     }
 
-    // सीक्रेट एडमिन गेटवे 3 क्लिक्स
     function handleLogoSecretCounter() {
         logoClickCounter++;
         playWatchMitraMasterSound();
@@ -578,9 +1142,9 @@
             document.getElementById('shield-pin-input').value = "";
             switchGlobalTab('admin-page', 'nav-admin-tab');
             loadAdminSavedFormData();
-            alert("🔓 मिलिट्री-ग्रेड कॉर्पोरेट सुरक्षा स्तर पार। केंद्रीय एडमिन कंट्रोल हब एक्टिवेटेड!");
+            alert("🔓 केंद्रीय एडमिन कंट्रोल हब v22.0 सक्रिय!");
         } else {
-            alert("🚨 अवैध मास्टर कोड! प्रवेश निरस्त कर दिया गया है।");
+            alert("🚨 अवैध मास्टर कोड!");
             closeAdminShieldOverlay();
         }
     }
@@ -593,17 +1157,16 @@
     function lockAdminPanelInstantly() {
         document.getElementById('nav-admin-tab').style.display = 'none';
         switchGlobalTab('home-page', 'nav-btn-home');
-        alert("🔒 एडमिन पैनल को दोबारा पूरी तरह से सुरक्षित हाइड कर दिया गया है।");
+        alert("🔒 एडमिन पैनल को सुरक्षित हाइड कर दिया गया है।");
     }
 
-    // 🆕 एडमिन डॉक्यूमेंट इनपुट फॉर्म सहेजने का लॉजिक
     function saveAdminCorporateVaultData() {
         localStorage.setItem('adm_cin', document.getElementById('adm-form-cin').value);
         localStorage.setItem('adm_gst', document.getElementById('adm-form-gst').value);
         localStorage.setItem('adm_msme', document.getElementById('adm-form-msme').value);
         localStorage.setItem('adm_pan', document.getElementById('adm-form-pan').value);
         localStorage.setItem('adm_api', document.getElementById('adm-form-api').value);
-        alert("💾 कंपनी लीगल डोक्यूमेंट्स एवं API क्रेडेंशियल्स सफलतापूर्वक सहेज लिए गए हैं!");
+        alert("💾 डाक्यूमेंट्स वाल्ट डेटा सुरक्षित सहेज लिया गया है!");
     }
 
     function loadAdminSavedFormData() {
@@ -622,13 +1185,13 @@
         addLedgerEntry("सफल रेफरल/शेयर बोनस", 2000, "plus");
         refreshUIVars();
         closeShareSystemPopup();
-        alert("🎁 बधाई! शेयर लिंक ट्रांसफर हुआ। आपको +2000 Coins मिले।");
+        alert("🎁 आपको +2000 Coins मिले।");
     }
 
     function forceSyncRefreshState() {
         playWatchMitraMasterSound();
         refreshUIVars();
-        alert("🔄 क्लाउड रिफ्रेश पूरा हुआ। ऐप क्रैश फ्री और परफेक्टली सिंक है।");
+        alert("🔄 क्लाउड सिंक रिफ्रेश पूरा हुआ।");
     }
 
     function toggleNotificationInbox() {
@@ -636,39 +1199,51 @@
         section.style.display = (section.style.display === 'block') ? 'none' : 'block';
     }
 
-    function closePushToast() { document.getElementById('push-toast').style.top = "-120px"; }
+    function closePushToast() { document.getElementById('push-toast').style.top = "-150px"; }
 
     function saveKycDetailsData() {
         let name = document.getElementById('kyc-name').value;
         let upi = document.getElementById('kyc-upi').value;
         if(!name || !upi) return alert("⚠️ कृपया अपना पूरा नाम और सही UPI ID डालें!");
-        localStorage.setItem('kyc_name_v21', name);
-        localStorage.setItem('kyc_upi_v21', upi);
+        localStorage.setItem('kyc_name_v22', name);
+        localStorage.setItem('kyc_upi_v22', upi);
         document.getElementById('kyc-status-lbl').innerText = "✅ आपका बैंक/UPI KYC डेटा सुरक्षित लॉक है!";
         refreshUIVars();
         alert("🔒 डेटा सुरक्षित सेव्ड।");
     }
 
-    // ऑटो फ्रॉड पेनल्टी प्रणाली
+    // 🚨 ३-स्ट्राइक प्रोग्रेसिव सुरक्षा प्रणाली (WatchMitra Team Protection Mechanism)
     function triggerAutomatedFraudPenalty(reason) {
         fraudStrikeCounter++;
-        localStorage.setItem('fraudStrikes_v21', fraudStrikeCounter);
+        localStorage.setItem('fraudStrikes_v22', fraudStrikeCounter);
         
         if (fraudStrikeCounter === 1) {
+            document.getElementById('fraud-alert-item').innerHTML = `<b>🚨 वॉचमित्र टीम:</b> चेतावनी 1/3: अवैध गतिविधि का प्रयास पकड़ा गया! दोबारा करने पर बैलेंस शून्य कर दिया जाएगा।`;
             document.getElementById('fraud-alert-item').style.display = 'block';
-            document.getElementById('noti-title').innerText = "🚨 सुरक्षा चेतावनी";
-            document.getElementById('noti-body').innerText = "अवैध गतिविधि का प्रयास! दोबारा करने पर बैलेंस 0 कर दिया जाएगा।";
+            document.getElementById('noti-title').innerText = "🚨 वॉचमित्र टीम अलर्ट";
+            document.getElementById('noti-body').innerText = "नियम उल्लंघन चेतावनी 1/3! आपका बैलेंस अभी सुरक्षित है।";
             document.getElementById('push-toast').style.top = "15px";
-            alert(`🚨 सुरक्षा कवच अलर्ट:\n\n${reason} पकड़ा गया! यह आपकी पहली चेतावनी है।`);
-        } else if (fraudStrikeCounter >= 2) {
+            alert(`🚨 वॉचमित्र टीम अलर्ट (स्ट्राइक 1):\n\n${reason} पकड़ा गया! यह आपकी पहली चेतावनी है। अभी कॉइन्स नहीं काटे गए हैं।`);
+        } 
+        else if (fraudStrikeCounter === 2) {
+            document.getElementById('fraud-alert-item').innerHTML = `<b>🚨 वॉचमित्र टीम:</b> अंतिम चेतावनी 2/3: इसके बाद सीधे बैलेंस शून्य किया जाएगा!`;
+            document.getElementById('fraud-alert-item').style.display = 'block';
+            document.getElementById('noti-title').innerText = "🚨 वॉचमित्र टीम अलर्ट";
+            document.getElementById('noti-body').innerText = "अंतिम चेतावनी 2/3! अगली बार उल्लंघन पर सीधे कार्रवाई होगी।";
+            document.getElementById('push-toast').style.top = "15px";
+            alert(`🚨 वॉचमित्र टीम अलर्ट (स्ट्राइक 2):\n\n${reason} फिर से पकड़ा गया! यह आपकी आख़िरी चेतावनी है। इसके बाद अकाउंट ज़ीरो कर दिया जाएगा!`);
+        }
+        else if (fraudStrikeCounter >= 3) {
             localCoins = 0;
-            appLedgerHistory = [{ title: "🚨 सुरक्षा जब्ती (फ्रॉड पेनल्टी)", time: getFormattedTimestamp(), type: "minus", amt: 0 }];
-            localStorage.setItem('appLedgerHistory_v21', JSON.stringify(appLedgerHistory));
+            appLedgerHistory = [{ title: "🚨 सुरक्षा जब्ती (वॉचमित्र टीम एक्शन)", time: getFormattedTimestamp(), type: "minus", amt: 0 }];
+            localStorage.setItem('appLedgerHistory_v22', JSON.stringify(appLedgerHistory));
             refreshUIVars();
+            
+            document.getElementById('fraud-alert-item').innerHTML = `<b>🚨 वॉचमित्र टीम:</b> उल्लंघन सीमा पार! आपका अकाउंट दंडित कर दिया गया है।`;
             document.getElementById('noti-title').innerText = "🚨 खाता दंडित / शून्य";
-            document.getElementById('noti-body').innerText = "लगातार फ्रॉड के कारण आपका वॉलेट बैलेंस तत्काल 0 कर दिया गया।";
+            document.getElementById('noti-body').innerText = "लगातार 3 बार फ्रॉड के कारण बैलेंस शून्य कर दिया गया।";
             document.getElementById('push-toast').style.top = "15px";
-            alert("🚨 सख्त सुरक्षा एक्शन:\n\nलगातार नियमों का उल्लंघन और फ्रॉड करने के कारण आपका पूरा बैलेंस शून्य (0 Coins) कर दिया गया है!");
+            alert("🚨 सख्त सुरक्षा एक्शन (स्ट्राइक 3):\n\nलगातार तीसरी बार फ्रॉड करने के कारण वॉचमित्र टीम द्वारा आपका पूरा बैलेंस शून्य (0 Coins) कर दिया गया है!");
         }
     }
 
@@ -678,42 +1253,41 @@
         
         localCoins += amt;
         addLedgerEntry(`${label} टास्क रिवॉर्ड`, amt, "plus");
-        localStorage.setItem('task_state_v21_' + id, 'done');
+        localStorage.setItem('task_state_v22_' + id, 'done');
         refreshUIVars();
         alert(`🎉 बधाई हो! ${label} का प्रूफ सबमिट हुआ और कॉइन सीधे वॉलेट में जोड़ दिए गए।`);
     }
 
-    // एडमिन भुगतान रूम
     function handleWithdrawSubmit() {
-        let savedUpi = localStorage.getItem('kyc_upi_v21');
+        let savedUpi = localStorage.getItem('kyc_upi_v22');
         if(!savedUpi) return alert("⚠️ कृपया पहले निकासी टैब के ऊपर अपना अनिवार्य KYC लॉक करें!");
         let amt = parseInt(document.getElementById('input-coins').value);
         if(!amt || amt <= 0) return alert("⚠️ कृपया वैध कॉइन्स की राशि डालें!");
         if(amt > localCoins) return alert("⚠️ आपके पास पर्याप्त बैलेंस नहीं है!");
         
-        localStorage.setItem('pending_withdraw_amt_v21', amt);
+        localStorage.setItem('pending_withdraw_amt_v22', amt);
         document.getElementById('admin-withdraw-log').innerText = `लंबित निकासी: ${amt} Coins (Sub: ₹${(amt/100).toFixed(2)}) -> UPI: ${savedUpi}`;
         document.getElementById('admin-pending-cash').innerText = `₹${(amt/100).toFixed(2)}`;
         document.getElementById('admin-withdraw-actions').style.display = 'flex';
-        alert("💸 आपका अनुरोध सबमिट हो गया है। एडमिन पैनल के अंदर लाइव अर्निंग ग्रिड में इसे मैन्युअल अप्रूव करें।");
+        alert("💸 आपका अनुरोध सबमिट हो गया है। एडमिन पैनल के अंदर लाइव अर्निंग ग्रिड में इसे अप्रूव करें।");
     }
 
     function approvePayoutManual() {
-        let amt = parseInt(localStorage.getItem('pending_withdraw_amt_v21')) || 0;
+        let amt = parseInt(localStorage.getItem('pending_withdraw_amt_v22')) || 0;
         if(amt > 0) {
             localCoins -= amt;
-            addLedgerEntry("विड्रॉल स्वीकृत (बैंक ट्रांसफर)", amt, "minus");
-            localStorage.removeItem('pending_withdraw_amt_v21');
+            addLedgerEntry("विड्रॉल स्वीकृत (बैंक传输)", amt, "minus");
+            localStorage.removeItem('pending_withdraw_amt_v22');
             document.getElementById('admin-withdraw-log').innerText = "कोई लंबित निकासी अनुरोध नहीं है.";
             document.getElementById('admin-pending-cash').innerText = "₹0.00";
             document.getElementById('admin-withdraw-actions').style.display = 'none';
             refreshUIVars();
-            alert("✅ भुगतान सफलतापूर्वक यूज़र के खाते में क्रेडिट कर दिया गया है (मैन्युअल अप्रूवल सफल)!");
+            alert("✅ भुगतान सफलतापूर्वक यूज़र के खाते में क्रेडिट कर दिया गया है!");
         }
     }
 
     function rejectPayoutManual() {
-        localStorage.removeItem('pending_withdraw_amt_v21');
+        localStorage.removeItem('pending_withdraw_amt_v22');
         document.getElementById('admin-withdraw-log').innerText = "कोई लंबित निकासी अनुरोध नहीं है.";
         document.getElementById('admin-pending-cash').innerText = "₹0.00";
         document.getElementById('admin-withdraw-actions').style.display = 'none';
@@ -737,7 +1311,7 @@
 
     function addLedgerEntry(title, amt, type) {
         appLedgerHistory.unshift({ title: title, time: getFormattedTimestamp(), type: type, amt: amt });
-        localStorage.setItem('appLedgerHistory_v21', JSON.stringify(appLedgerHistory));
+        localStorage.setItem('appLedgerHistory_v22', JSON.stringify(appLedgerHistory));
     }
 
     function toggleSubDashboardLayout() {
@@ -750,7 +1324,7 @@
         let html = "";
         for(let i=0; i<10; i++) {
             let prizeCoins = (12000 - (i * 950));
-            html += `<div class="ledger-item" style="background:rgba(255,255,255,0.01);"><div style="display:flex; align-items:center; gap:8px;"><span style="color:${i===0?'#f59e0b':'#9ca3af'}; font-weight:800;">#0${i+1}</span> <b>${names[i]}</b></div><span style="color:var(--primary); font-weight:700;">${prizeCoins} Coins</span></div>`;
+            html += `<div class="ledger-item"><div style="display:flex; align-items:center; gap:8px;"><span style="color:${i===0?'#f59e0b':'#9ca3af'}; font-weight:800;">#0${i+1}</span> <b>${names[i]}</b></div><span style="color:var(--primary); font-weight:700;">${prizeCoins} Coins</span></div>`;
         }
         document.getElementById('leaderboard-ranking-list').innerHTML = html;
     }
@@ -758,7 +1332,7 @@
     function renderUIPassbookHistory() {
         let container = document.getElementById('user-ledger-history-container');
         if(appLedgerHistory.length === 0) {
-            container.innerHTML = `<p style="font-size:11px; color:#6b7280; text-align:center; padding:10px;">कोई लेनदेन इतिहास उपलब्ध नहीं है.</p>`;
+            container.innerHTML = `<p style="font-size:11px; color:#6b7280; text-align:center; padding:10px;">कोई लेनदेन इतिहास नहीं है.</p>`;
             return;
         }
         let html = "";
@@ -767,7 +1341,7 @@
             let color = item.type === "plus" ? "var(--primary)" : "#ef4444";
             html += `<div class="ledger-item">
                 <div>
-                    <h6 style="font-weight:700; color:#fff;">${item.title}</h6>
+                    <h6 style="font-weight:700; color:#ffffff;">${item.title}</h6>
                     <small style="color:#6b7280; font-size:10px;"><i class="fa-regular fa-clock"></i> ${item.time}</small>
                 </div>
                 <span style="color:${color}; font-weight:800; font-size:13px;">${sign}${item.amt}</span>
@@ -777,7 +1351,7 @@
     }
 
     function refreshUIVars() {
-        localStorage.setItem('appCoins_v21', localCoins);
+        localStorage.setItem('appCoins_v22', localCoins);
         let convertedRupees = (localCoins / 100).toFixed(2);
         
         document.getElementById('header-coins').innerText = `${localCoins} Coins (₹${convertedRupees})`;
@@ -786,23 +1360,22 @@
         }
         
         ['task1', 'task2', 'task3'].forEach(id => {
-            if(localStorage.getItem('task_state_v21_' + id) === 'done' && document.getElementById('container-' + id)) {
+            if(localStorage.getItem('task_state_v22_' + id) === 'done' && document.getElementById('container-' + id)) {
                 document.getElementById('container-' + id).innerHTML = `<div class="task-meta"><div><h5 style="color:#6b7280; text-decoration:line-through; font-size:12px;">✅ सीपीए टास्क सफलतापूर्वक क्रेडिटेड</h5></div><button class="task-btn completed" disabled>डन</button></div>`;
             }
         });
 
-        let savedUpi = localStorage.getItem('kyc_upi_v21');
+        let savedUpi = localStorage.getItem('kyc_upi_v22');
         if(savedUpi) {
             document.getElementById('input-upi').value = savedUpi;
             document.getElementById('kyc-upi').value = savedUpi;
         }
-        let savedName = localStorage.getItem('kyc_name_v21');
+        let savedName = localStorage.getItem('kyc_name_v22');
         if(savedName) document.getElementById('kyc-name').value = savedName;
 
         renderUIPassbookHistory();
     }
 
-    // 📺 यूट्यूब प्लेयर लाइफसाइकिल (वॉल्यूम समस्या स्थायी समाधान)
     function onYouTubeIframeAPIReady() {
         ytPlayer = new YT.Player('player-frame', {
             videoId: 'dQw4w9WgXcQ',
@@ -868,7 +1441,6 @@
         switchVideoIframe('dQw4w9WgXcQ', 0);
     }
 
-    // 🎡 लकी व्हील निरंतर रोटेशन फिक्स
     function handleWheelClickLogic() {
         if (isWheelSpinning) return; isWheelSpinning = true;
         const targetIndex = Math.floor(Math.random() * wheelRewards.length);
@@ -895,12 +1467,11 @@
         for (let i = 0; i < 6; i++) {
             ctx.fillStyle = wheelColors[i]; ctx.beginPath(); ctx.moveTo(90, 90);
             ctx.arc(90, 90, 85, i * 1.047 - Math.PI/2, (i+1) * 1.047 - Math.PI/2); ctx.fill();
-            ctx.save(); ctx.fillStyle = "#fff"; ctx.translate(90, 90); ctx.rotate(i * 1.047 - Math.PI/2 + 0.523);
+            ctx.save(); ctx.fillStyle = "#ffffff"; ctx.translate(90, 90); ctx.rotate(i * 1.047 - Math.PI/2 + 0.523);
             ctx.font = "bold 10px sans-serif"; ctx.textAlign = "right"; ctx.fillText(wheelRewards[i], 76, 4); ctx.restore();
         }
     }
 
-    // 🎮 असली कैनवास गेम इंजन (Cyber Tap Rocket Mechanics)
     let gameScore = 0; let gameInterval; let rocketsArray = [];
     const gCanvas = document.getElementById('rocket-game-canvas');
     const gCtx = gCanvas.getContext('2d');
@@ -910,7 +1481,7 @@
         document.getElementById('game-score-box').innerText = "रॉकेट्स स्मैश: 0 / 15";
         clearInterval(gameInterval);
         gameInterval = setInterval(updateRocketGameFrame, 30);
-        alert("🚀 गेम शुरू! स्क्रीन पर आने वाले हरे बॉक्स (रॉकेट्स) पर तुरंत उंगली से टैप/क्लिक करें!");
+        alert("🚀 गेम शुरू! स्क्रीन पर आने वाले हरे बॉक्स (रॉकेट्स) पर तुरंत टैप/क्लिक करें!");
     }
 
     gCanvas.addEventListener('mousedown', (e) => {
@@ -919,7 +1490,7 @@
     });
     gCanvas.addEventListener('touchstart', (e) => {
         const rect = gCanvas.getBoundingClientRect();
-        checkRocketHit(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
+        checkRocketHit(e.touches[0].clientX - rect.left, e.touches[0].top - rect.top);
     });
 
     function checkRocketHit(x, y) {
@@ -944,14 +1515,14 @@
         gCtx.fillStyle = "var(--primary)";
         rocketsArray.forEach((r, idx) => {
             r.y -= r.speed; gCtx.fillRect(r.x, r.y, 24, 24);
-            gCtx.strokeStyle = "#fff"; gCtx.strokeRect(r.x, r.y, 24, 24);
+            gCtx.strokeStyle = "#ffffff"; gCtx.strokeRect(r.x, r.y, 24, 24);
             if(r.y < -30) rocketsArray.splice(idx, 1);
         });
     }
 
     function triggerDailyStreakBonus() { 
         localCoins += 20; addLedgerEntry("डेली लॉगिन बोनस", 20, "plus");
-        refreshUIVars(); alert("🎉 रोजाना लॉगिन रिवॉर्ड (+20 Coins) सुरक्षित ट्रांसफर हुआ!"); 
+        refreshUIVars(); alert("🎉 रोजाना लॉगिन बोनस (+20 Coins) सुरक्षित ट्रांसफर हुआ!"); 
     }
     
     function activateUploadZone(id) { document.getElementById('zone-' + id).style.display = 'flex'; }
@@ -962,6 +1533,11 @@
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
         document.getElementById(pId).style.display = 'block'; document.getElementById(nId).classList.add('active');
         document.getElementById('notification-inbox-section').style.display = 'none'; 
+    }
+
+    function clearAllNotifications() {
+        document.getElementById('notifications-list-container').innerHTML = `<p style="font-size:11px; color:#6b7280; text-align:center; padding:10px;">सभी अलर्ट साफ़ कर दिए गए हैं।</p>`;
+        document.getElementById('noti-count-badge').style.display = 'none';
     }
 
     refreshUIVars();
